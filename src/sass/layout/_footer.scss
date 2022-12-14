@@ -1,0 +1,56 @@
+.footer__container {
+  padding: 29px 0px 29px 0px;
+  background-color: #f7f7f7;
+}
+
+.footer__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  color: #545454;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__content {
+    flex-wrap: nowrap;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
+
+.rights {
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .rights {
+    margin-bottom: 0;
+  }
+}
+
+.team {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.like__icon {
+  fill: currentColor;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.team__link {
+  text-decoration: underline;
+}
+
+.team__link:hover,
+.team__link:focus {
+  color: #ff6b08;
+}
