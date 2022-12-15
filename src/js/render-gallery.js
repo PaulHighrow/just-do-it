@@ -1,5 +1,6 @@
 export { renderGallery };
 
+const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const galleryEl = document.querySelector('.gallery');
 
 function renderGallery(images) {
@@ -17,7 +18,7 @@ function renderGallery(images) {
       } = image;
       return `<li class="card">
   <div class="card_tumb">
-    <img class="card_img" id="${id}" src="${backdrop_path}" src="${poster_path}
+    <img class="card_img" id="${id}" src="${IMG_URL + poster_path}
 "alt="${title}" />
   </div>
   <h2 class="card_title">${original_title}</h2>
@@ -28,7 +29,7 @@ function renderGallery(images) {
   <span class="card_year">${release_date}</span>
   <span class="card__rating">${vote_average}</span>
   </div>
-</li>;`;
+</li>`;
     })
     .join('');
 

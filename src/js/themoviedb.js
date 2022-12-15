@@ -1,7 +1,8 @@
-const API_KEY = 'e146a7a5146c0f8a3c3cd99167c5b659';
+export const API_KEY = 'e146a7a5146c0f8a3c3cd99167c5b659';
 console.log('API_KEY: ', API_KEY);
 
 import axios from 'axios';
+import { renderGallery } from './render-gallery';
 
 async function getTrendingMovies(page) {
   try {
@@ -25,9 +26,16 @@ async function getTrendingMovies(page) {
   }
 }
 
+// renderGallery(getTrendingMovies(1));
+
+console.log(getTrendingMovies(1));
+
 getTrendingMovies(1).then(data => {
   console.log(data);
+  renderGallery(data.results);
 });
+
+// renderGallery(data);
 
 async function getGenres() {
   try {
