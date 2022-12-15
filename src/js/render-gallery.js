@@ -1,9 +1,9 @@
 export { renderGallery };
 
-const gallery = document.querySelector('.gallery');
+const galleryEl = document.querySelector('.gallery');
 
 function renderGallery(images) {
-  const marcup = images
+  const markup = images
     .map(image => {
       const {
         id,
@@ -32,5 +32,5 @@ function renderGallery(images) {
     })
     .join('');
 
-  gallery.insertAdjacentHTML('beforeend', marcup);
+  galleryEl.insertAdjacentHTML('beforeend', markup);
 }
