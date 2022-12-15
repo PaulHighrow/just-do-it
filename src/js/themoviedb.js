@@ -3,9 +3,9 @@ console.log('API_KEY: ', API_KEY);
 
 import axios from 'axios';
 
-async function markupTrendingMovie(page) {
+async function getTrendingMovies(page) {
   try {
-    const response = await axios.get(
+    const resp = await axios.get(
       `https://api.themoviedb.org/3/trending/movie/day?`,
       {
         params: {
@@ -14,25 +14,24 @@ async function markupTrendingMovie(page) {
         },
       }
     );
-
-    if (response.status !== 200) {
-      throw new Error(response.status);
+    console.log('getTrendingMovies', resp);
+    if (!resp) {
+      throw new Error();
     }
 
-    return response.data;
+    return resp.data;
   } catch (error) {
     console.error(error);
   }
 }
-markupTrendingMovie(1).then(data => {
+
+getTrendingMovies(1).then(data => {
   console.log(data);
 });
 
-
-
-async function markupGenres() {
+async function getGenres() {
   try {
-    const respon = await axios.get(
+    const resp = await axios.get(
       `https://api.themoviedb.org/3/genre/movie/list?`,
       {
         params: {
@@ -41,17 +40,17 @@ async function markupGenres() {
         },
       }
     );
-
-    if (respon.status !== 200) {
-      throw new Error(respon.status);
+    console.log('getGenres', resp);
+    if (!resp) {
+      throw new Error();
     }
 
-    return respon.data;
+    return resp.data;
   } catch (error) {
     console.error(error);
   }
 }
 
-markupGenres().then(arr => {
+getGenres().then(arr => {
   console.log(arr);
 });
