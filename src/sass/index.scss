@@ -2,6 +2,7 @@
 @import './utils/vars';
 @import './utils/visually-hidden';
 @import './utils/mixin';
+@import './utils/is-hidden';
 
 // Base styles
 @import './base/common';
@@ -11,6 +12,8 @@
 // Components styles
 @import './components/container';
 @import './components/modal';
+@import './components/modalTeam';
+
 
 // Layout styles
 @import './layout/header';
