@@ -4,3 +4,4 @@ import './js/pagination';
 
 import './js/render-gallery';
 import './js/modalTeam';
+import './js/searchInput';

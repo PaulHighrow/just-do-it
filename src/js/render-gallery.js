@@ -26,7 +26,7 @@ function renderGallery(images) {
   <ul class="card_list">
     <li class="card_item">${genre_ids}</li>
   </ul>
-  <span class="card_year">${release_date}</span>
+  <span class="card_year">${release_date.substring(0, 4)}</span>
   <span class="card__rating">${vote_average}</span>
   </div>
 </li>`;
