@@ -16,4 +16,52 @@
   @media screen and (min-width: 1280px) {
     column-gap: 16px;
   }
+  &__thumb {
+    @media screen and (min-width: 768px) {
+      height: 504;
+    }
+    @media screen and (min-width: 1280px) {
+      height: 591px;
+    }
+  }
+  &__img {
+    border-radius: 5px;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__item {
+    width: 280px;
+    border-radius: 5px;
+    @media screen and (min-width: 768px) {
+      width: 336px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 394px;
+    }
+  }
+  &__descr {
+    margin-top: 10px;
+    flex-grow: 1;
+    @media screen and (min-width: 1280px) {
+      height: 50px;
+    }
+  }
+  &__title,
+  &__text {
+    font-weight: 500;
+    font-size: 12px;
+
+    @media screen and (min-width: 1280px) {
+      font-size: 20px;
+      line-height: 1.2px;
+    }
+  }
+  &__text {
+    color: #ff6b08;
+    line-height: 1.33;
+  }
+  &__title {
+    line-height: 1.16;
+    text-transform: uppercase;
+  }
 }
