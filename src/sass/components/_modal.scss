@@ -15,12 +15,29 @@
   opacity: 0.25;
 }
 
-.modal {
+.close-modal {
   position: absolute;
+  right: 8px;
+  top: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border: transparent;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
   top: 50%;
   left: 50%;
-  padding: 48px 20px 40px 20px;
   transform: translate(-50%, -50%);
+  padding: 48px 20px 40px 20px;
   width: 280px;
   height: 940px;
   @media screen and (min-width: 768px) {
@@ -40,7 +57,7 @@
     display: flex;
     gap: 68px;
   }
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 1280px) {
     gap: 12px;
   }
 }
@@ -82,7 +99,15 @@
 }
 
 .data-value {
-  margin-right: auto;
+  position: absolute;
+  left: 128px;
+  @media screen and (min-width: 768px) {
+    left: 476px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    left: 555px;
+  }
 }
 
 .data-value {
@@ -94,6 +119,8 @@
 .vote-value {
   display: inline-block;
   text-align: center;
+  padding-bottom: 1px;
+  padding-top: 1px;
   width: 36px;
   height: 16px;
   border-radius: 5px;
@@ -103,6 +130,8 @@
 .votes-value {
   display: inline-block;
   text-align: center;
+  padding-bottom: 1px;
+  padding-top: 1px;
   width: 36px;
   height: 16px;
   border-radius: 5px;
@@ -157,7 +186,7 @@
 }
 
 .btn-modal-queue {
-        padding: 14px 9px 12px 9px;
+  padding: 14px 9px 12px 9px;
   @media screen and (min-width: 768px) {
     padding: 14px 7px 12px 7px;
   }

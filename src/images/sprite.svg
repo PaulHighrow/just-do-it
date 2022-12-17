@@ -24,7 +24,15 @@
             </path>
         </symbol>
         <symbol id="icon-close" viewBox="0 0 32 32">
-<path d="M22.72 24.213l-6.72-6.72-6.72 6.72-1.493-1.493 6.72-6.72-6.72-6.72 1.493-1.493 6.72 6.72 6.72-6.72 1.493 1.493-6.72 6.72 6.72 6.72z"></path>
-</symbol>
+            <path
+                d="M22.72 24.213l-6.72-6.72-6.72 6.72-1.493-1.493 6.72-6.72-6.72-6.72 1.493-1.493 6.72 6.72 6.72-6.72 1.493 1.493-6.72 6.72 6.72 6.72z">
+            </path>
+        </symbol>
+    </defs>
+    <defs>
+        <symbol id="modal-close-icon" viewBox="0 0 32 32">
+            <path d="M8 8L22 22" stroke="black" stroke-width="2" />
+            <path d="M8 22L22 8" stroke="black" stroke-width="2" />
+        </symbol>
     </defs>
 </svg>
