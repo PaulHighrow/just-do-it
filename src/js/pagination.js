@@ -2,7 +2,7 @@
 
 import Pagination from 'tui-pagination';
 import apiService from './themoviedb';
-import { trendingFilms } from './searchInput';
+// import { trendingFilms } from './searchInput';
 import {
   trendingFilmsList,
   getTrendingMovies,
