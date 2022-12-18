@@ -1,7 +1,9 @@
+
 import { apiService } from './themoviedb';
 import { getGenres } from './themoviedb.js';
 
 const NO_IMAGE = 'https://www.iitravel.com/images/no_preview.jpg';
+
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const form = document.querySelector('.search__form');
 const galleryEl = document.querySelector('.gallery');
@@ -137,3 +139,5 @@ function creatMessageInputTwo() {
     message.innerHTML = '';
   }, 7000);
 }
+
+

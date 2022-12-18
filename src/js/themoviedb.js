@@ -61,6 +61,7 @@ async function getGenres() {
 //   console.log(arr);
 // });
 
+
 export class apiService {
   constructor() {
     this.searchQuery = '';
@@ -80,8 +81,12 @@ export class apiService {
           },
         }
       );
+alert(
+          'Sorry, there are no movies matching your search query. Please try again.'
+        );
       if (!response) {
         throw new Error();
+
       }
 
       console.log(response.data);
