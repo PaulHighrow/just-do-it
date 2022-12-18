@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container header__container">
     <nav class="navigation">
-      <a class="logo link" href="./index.html">
+      <a class="logo link logo__list" href="./index.html">
         <svg class="logo__icon" height="24" width="24">
           <use href="./images/sprite.svg#icon-logo"></use>
         </svg>
@@ -11,15 +11,19 @@
         <li class="navigation__item">
           <a
             href="./index.html"
-            class="navigation__link navigation__link--current link"
-            >Home</a
-          >
+            class="navigation__link navigation__link--current link">Home</a>
         </li>
         <li class="navigation__item">
           <a href="./watched.html" class="navigation__link link">My library</a>
         </li>
+        <li class="navigation__item"><button class="dropdown-toggle" data-path="one"> <svg class="like__icon" height="13" width="14">
+          <use href="./images/sprite.svg#icon-list"></use>
+        </svg></button></li>
+    
+      
       </ul>
     </nav>
+
     <div class="search">
       <form class="search__form" id="search-form" autocomplete="off">
         <input
@@ -36,5 +40,6 @@
         </button>
       </form>
     </div>
+    <div class="header__message"></div>
   </div>
 </header>

@@ -1,9 +1,17 @@
-import Pagination from 'tui-pagination';
+// https://www.npmjs.com/package/tui-pagination#-documents
 
-const container = document.getElementById('tui-pagination-container');
+import Pagination from 'tui-pagination';
+// import apiService from './themoviedb';
+// import FetchApi from './fetchaAPI';
+// import { trendingFilms } from './searchInput';
+// import {
+//   trendingFilmsList,
+//   getTrendingMovies,
+//   singleGenre,
+// } from './render-gallery';
 
 export const paginationOptions = {
-  totalItems: 0,
+  totalItems: 20,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -26,4 +34,65 @@ export const paginationOptions = {
       '</a>',
   },
 };
-//export let pagination = new Pagination('pagination', paginationOptions);
+export let pagination = new Pagination('pagination', paginationOptions);
+
+//Pagination first start with response from API and create total_pages
+
+export const paginationPage = pagination.getCurrentPage();
+console.log(pagination.getCurrentPage());
+
+export function creatingTotalResultsPagination(res) {
+  pagination.reset(res.data.results);
+}
+
+//Pagination change number of page, Fetch data and Render pages
+
+export function paginationChangePageShowTrend() {
+  pagination.on('afterMove', event => {
+    //Current pagination page go to trendingFilms.page
+    const currentPage = event.page;
+    trendingFilmsList.page = currentPage;
+    // console.log("trendingFilms.page", trendingFilms.page);
+
+    // Rendering
+    trendingFilms.getTrendingMovies().then(res => {
+      //console.log("paginationOptions = ", paginationOptions)
+
+      res.data.results.forEach(movie => {
+        const {
+          title,
+          poster_path,
+          id,
+          vote_average,
+          genre_ids,
+          release_date,
+        } = movie;
+        // console.log(movie);
+
+        renderMovieCard(
+          id,
+          poster_path,
+          title,
+          singleGenre,
+          release_date,
+          vote_average
+        );
+      });
+    });
+  });
+}
+
+export function paginationSearchFilms(res) {
+  console.log(res.data);
+  creatingTotalResultsPagination(res);
+  setTimeout(changePaginationTheme, 100);
+}
+
+export function paginationChangePageSearchFilms() {
+  pagination.on('afterMove', event => {
+    //Current pagination page go to trendingFilms.page
+    const currentPage = event.page;
+    trendingFilms.page = currentPage;
+    // console.log("trendingFilms.page", trendingFilms.page);
+  });
+}
