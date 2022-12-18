@@ -1,4 +1,3 @@
-
 import { apiService } from './themoviedb';
 import { getGenres } from './themoviedb.js';
 
@@ -139,5 +138,3 @@ function creatMessageInputTwo() {
     message.innerHTML = '';
   }, 7000);
 }
-
-
