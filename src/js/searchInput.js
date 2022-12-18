@@ -1,4 +1,6 @@
 import apiService from './themoviedb';
+
+
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const form = document.querySelector('.search__form');
 const galleryEl = document.querySelector('.gallery');
@@ -101,3 +103,5 @@ function smoothScroll() {
     behavior: 'smooth',
   });
 }
+
+
