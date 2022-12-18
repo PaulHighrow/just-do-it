@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+import './js/darkmode';
 import './js/themoviedb';
 import './js/fetchAPI';
 import './js/pagination';

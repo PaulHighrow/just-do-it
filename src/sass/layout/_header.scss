@@ -1,9 +1,10 @@
 // фонове зображення
 
 .header {
+  isolation: isolate;
   height: 230px;
   background-color: rgba(0, 0, 0, 0.56);
-//   opacity: 0.97;
+  //   opacity: 0.97;
   background-image: 
 //   linear-gradient(
 //       to right,
@@ -321,5 +322,5 @@
 
   font-size: 14px;
   line-height: 1.14;
-  color: #FF001B;
+  color: #ff001b;
 }
