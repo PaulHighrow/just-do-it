@@ -5,12 +5,13 @@ const form = document.querySelector('.search__form');
 
 const refs = {
   listButton: document.querySelector('.list-button'),
-  gallery: document.querySelector('.gallery'),
   dropdownToggle: document.querySelectorAll('.dropdown-toggle'),
   buttonFilter: document.querySelectorAll('.button-filter')
 };
 
 refs.listButton.addEventListener('click', onSearch);
+
+const fdd = document.querySelector('.gallery')
 
 let trendFilmsList = [];
 let page = 1;
@@ -69,7 +70,7 @@ if(!elem.target.id){
       console.log('Failed to get genres : ', error);
       trendFilmsList.map(movie => (movie.genres = 'Genres N/A'));
     });
-  refs.gallery.innerHTML = trendFilmsList
+  fdd.innerHTML = trendFilmsList
     .map(({ id, poster, title, genres, year, vote }) => {
       return `<li class="gallery__item">
   <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
