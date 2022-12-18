@@ -1,4 +1,4 @@
-import { getFilmDetails } from './fetchaAPI';
+import { getFilmDetails } from './fetchAPI';
 import Spinner from './spinner';
 
 const spinner = new Spinner();
@@ -19,22 +19,24 @@ function onMovieCardClick(e) {
     spinner.enable();
 
     getFilmDetails(selectedMovieId)
-    .then(response => {
-      modalMovieToggle();
-      modalMovie.innerHTML = renderMovieInfo(response);
-      addModalMovieListeners();
-      spinner.disable();
-      return response;
-    })
-      
-    .catch(error => console.log(error));
+      .then(response => {
+        modalMovieToggle();
+        modalMovie.innerHTML = renderMovieInfo(response);
+        addModalMovieListeners();
+        spinner.disable();
+        return response;
+      })
+
+      .catch(error => console.log(error));
   }
 }
 
 function onCloseModalMovie(e) {
   e.preventDefault();
 
-  const isContainsClass = e.target.classList.contains('close-btn__icon') || e.target.parentNode.classList.contains('close-btn__icon');
+  const isContainsClass =
+    e.target.classList.contains('close-btn__icon') ||
+    e.target.parentNode.classList.contains('close-btn__icon');
 
   if (e.code === 'Escape' || isContainsClass || e.target === backdrop) {
     modalMovieToggle();
@@ -74,7 +76,7 @@ function renderMovieInfo({
   const genresString = genres.map(genre => genre.name).join(', ');
   const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500/';
   const noPosterImg =
-  'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
+    'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 
   return `<button class="btn close-btn" type="button">
     <svg class="close-btn__icon" width="30" height="30">
@@ -97,7 +99,7 @@ function renderMovieInfo({
           <p class="modalMovie__data-value">
             <span class="modalMovie__vote-value">${vote_average.toFixed(
               1
-              )}</span> /
+            )}</span> /
             <span class="modalMovie__votes-value">${vote_count}</span>
           </p>
       </li>
@@ -126,7 +128,6 @@ function renderMovieInfo({
     </ul>
   </div>`;
 }
-
 
 function clearModalMovieInfo() {
   modalMovie.innerHTML = '';

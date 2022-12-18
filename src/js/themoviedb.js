@@ -25,16 +25,6 @@ async function getTrendingMovies(page) {
   }
 }
 
-// renderGallery(getTrendingMovies(1));
-
-// console.log(getTrendingMovies(1));
-
-// getTrendingMovies(1).then(data => {
-//   console.log(data);
-// });
-
-// renderGallery(data);
-
 async function getGenres() {
   try {
     const resp = await axios.get(
@@ -56,10 +46,6 @@ async function getGenres() {
     console.error(error);
   }
 }
-
-// getGenres().then(arr => {
-//   console.log(arr);
-// });
 
 export class apiService {
   constructor() {

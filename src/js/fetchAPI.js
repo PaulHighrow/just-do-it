@@ -17,7 +17,8 @@ export default class FetchApi {
     try {
       const url = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=${this.lang}&page=${this.page}`;
       const response = await axios.get(url);
-      return response.data;
+      console.log(response);
+      return response;
     } catch (error) {
       console.error(`an error occurred` + error);
     }
@@ -36,7 +37,7 @@ export default class FetchApi {
   async getFilmsByName() {
     try {
       const searchParams = new URLSearchParams({
-        api_key: 'e236468c654efffdf9704cd975a74a96',
+        api_key: API_KEY,
         query: this.searchQuery,
         language: 'en-US',
         page: this.page,
@@ -73,7 +74,7 @@ export default class FetchApi {
   async getFilteredMovies() {
     try {
       const searchParams = new URLSearchParams({
-        api_key: 'e236468c654efffdf9704cd975a74a96',
+        api_key: API_KEY,
         language: this.lang,
         sort_by: 'popularity.desc',
         page: this.page,
@@ -116,7 +117,3 @@ export default class FetchApi {
     this.page = 1;
   }
 }
-
-const fetcher = new FetchApi();
-console.log(fetcher.getPopularFilms());
-console.log(fetcher.getTrendFilms());
