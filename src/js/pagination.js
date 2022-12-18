@@ -3,12 +3,12 @@
 import Pagination from 'tui-pagination';
 // import apiService from './themoviedb';
 // import FetchApi from './fetchaAPI';
-import { trendingFilms } from './searchInput';
-import {
-  trendingFilmsList,
-  getTrendingMovies,
-  singleGenre,
-} from './render-gallery';
+// import { trendingFilms } from './searchInput';
+// import {
+//   trendingFilmsList,
+//   getTrendingMovies,
+//   singleGenre,
+// } from './render-gallery';
 
 export const paginationOptions = {
   totalItems: 20,
