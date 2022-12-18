@@ -5,42 +5,29 @@ const form = document.querySelector('.search__form');
 
 const refs = {
   listButton: document.querySelector('.list-button'),
-  gallery: document.querySelector('.gallery'),
-  action: document.querySelector('.Action'),
-  adventure: document.querySelector('.Adventure'),
-  animation: document.querySelector('.Animation'),
-  comedy: document.querySelector('.Comedy'),
-  crime: document.querySelector('.Crime'),
-  documentary: document.querySelector('.Documentary'),
-  drama: document.querySelector('.Drama'),
-  family: document.querySelector('.Family'),
-  fantasy: document.querySelector('.Fantasy'),
-  history: document.querySelector('.History'),
-  horror: document.querySelector('.Horror'),
-  music: document.querySelector('.Music'),
-  mystery: document.querySelector('.Mystery'),
-  romance: document.querySelector('.Romance'),
-  scienceFiction: document.querySelector('.Science-fiction'),
-  thriller: document.querySelector('.Thriller'),
-  war: document.querySelector('.War'),
-  western: document.querySelector('.Western'),
+
+  dropdownToggle: document.querySelectorAll('.dropdown-toggle'),
+  buttonFilter: document.querySelectorAll('.button-filter')
 };
-    
 
- 
-
-
+refs.listButton.addEventListener('click', onSearch);
 
 let trendFilmsList = [];
-let genre = 4
+let genre = 4;
+
 let page = 1;
 async function onSearch(elem) {
   elem.preventDefault();
   form.reset();
-  
-  genre = Number(elem.target.id)
-console.log(Number(elem.target.id));
-  await fetchGanres(page,genre).then(data => {
+
+if(!elem.target.id){
+    return
+}
+
+  genre = Number(elem.target.id);
+  console.log(Number(elem.target.id));
+  await fetchGanres(page, genre).then(data => {
+
     trendFilmsList = [];
     data.results.forEach(movie => {
       let movieData = {
@@ -83,7 +70,9 @@ console.log(Number(elem.target.id));
     })
     .catch(error => {
       console.log('Failed to get genres : ', error);
-      //   popularMoviesList.map(movie => (movie.genres = 'Genres N/A'));
+
+      trendFilmsList.map(movie => (movie.genres = 'Genres N/A'));
+
     });
   refs.gallery.innerHTML = trendFilmsList
     .map(({ id, poster, title, genres, year, vote }) => {
@@ -114,21 +103,61 @@ async function fetchGanres(page, genre) {
 
 
 
-refs.action.addEventListener('click', onSearch);
-refs.adventure.addEventListener('click', onSearch);
-refs.animation.addEventListener('click', onSearch);
-refs.comedy.addEventListener('click', onSearch);
-refs.crime.addEventListener('click', onSearch);
-refs.documentary.addEventListener('click', onSearch);
-refs.drama.addEventListener('click', onSearch);
-refs.family.addEventListener('click', onSearch);
-refs.fantasy.addEventListener('click', onSearch);
-refs.history.addEventListener('click', onSearch);
-refs.horror.addEventListener('click', onSearch);
-refs.music.addEventListener('click', onSearch);
-refs.mystery.addEventListener('click', onSearch);
-refs.romance.addEventListener('click', onSearch);
-refs.scienceFiction.addEventListener('click', onSearch);
-refs.thriller.addEventListener('click', onSearch);
-refs.war.addEventListener('click', onSearch);
-refs.western.addEventListener('click', onSearch);
+
+let intervalId;
+
+refs.dropdownToggle.forEach(elem => {
+  elem.addEventListener('click', onStartMenu);
+});
+
+function onStartMenu(elem) {
+  const menu = elem.currentTarget.dataset.path;
+  document.querySelectorAll('.dropdown-menu').forEach(elem => {
+    if (
+      !document
+        .querySelector(`[data-target=${menu}]`)
+        .classList.contains('open')
+    ) {
+      elem.classList.remove('menu-active');
+      elem.classList.remove('open');
+
+      document
+        .querySelector(`[data-target=${menu}]`)
+        .classList.add('menu-active');
+      intervalId = setTimeout(() => {
+        document.querySelector(`[data-target=${menu}]`).classList.add('open');
+      }, 0);
+    }
+
+    if (
+      document.querySelector(`[data-target=${menu}]`).classList.contains('open')
+    ) {
+      clearTimeout(intervalId);
+      document
+        .querySelector(`[data-target=${menu}]`)
+        .classList.remove('menu-active');
+      intervalId = setTimeout(() => {
+        document
+          .querySelector(`[data-target=${menu}]`)
+          .classList.remove('open');
+      }, 0);
+    }
+
+    window.onclick = elem => {
+      if (
+        elem.target === document.querySelector(`[data-target=${menu}]`) ||
+        elem.target === document.querySelector(`[data-path=${menu}]`)
+      ) {
+        return;
+      } else {
+        document
+          .querySelector(`[data-target=${menu}]`)
+          .classList.remove('menu-active');
+        document
+          .querySelector(`[data-target=${menu}]`)
+          .classList.remove('open');
+      }
+    };
+  });
+}
+
