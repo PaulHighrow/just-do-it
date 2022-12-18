@@ -1,4 +1,4 @@
-//export { renderGallery };
+// export { renderGallery };
 import { getGenres, getTrendingMovies } from './themoviedb.js';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const galleryEl = document.querySelector('.gallery');

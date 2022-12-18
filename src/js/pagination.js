@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+// https://www.npmjs.com/package/tui-pagination#-documents
 
 const container = document.getElementById('tui-pagination-container');
 
@@ -26,4 +27,4 @@ export const paginationOptions = {
       '</a>',
   },
 };
-//export let pagination = new Pagination('pagination', paginationOptions);
+// export let pagination = new Pagination('pagination', paginationOptions);
