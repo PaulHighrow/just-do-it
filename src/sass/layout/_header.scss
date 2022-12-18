@@ -311,3 +311,15 @@
     }
   }
 }
+.header__message {
+  margin-top: 20px;
+  border: transparent;
+  outline: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  line-height: 1.14;
+  color: #FF001B;
+}

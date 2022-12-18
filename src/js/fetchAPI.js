@@ -116,3 +116,7 @@ export default class FetchApi {
     this.page = 1;
   }
 }
+
+const fetcher = new FetchApi();
+console.log(fetcher.getPopularFilms());
+console.log(fetcher.getTrendFilms());

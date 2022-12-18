@@ -5,7 +5,7 @@ const form = document.querySelector('.search__form');
 
 const refs = {
   listButton: document.querySelector('.list-button'),
-  gallery: document.querySelector('.gallery'),
+
   dropdownToggle: document.querySelectorAll('.dropdown-toggle'),
   buttonFilter: document.querySelectorAll('.button-filter')
 };
@@ -14,10 +14,12 @@ refs.listButton.addEventListener('click', onSearch);
 
 let trendFilmsList = [];
 let genre = 4;
+
 let page = 1;
 async function onSearch(elem) {
   elem.preventDefault();
   form.reset();
+
 if(!elem.target.id){
     return
 }
@@ -25,6 +27,7 @@ if(!elem.target.id){
   genre = Number(elem.target.id);
   console.log(Number(elem.target.id));
   await fetchGanres(page, genre).then(data => {
+
     trendFilmsList = [];
     data.results.forEach(movie => {
       let movieData = {
@@ -67,7 +70,9 @@ if(!elem.target.id){
     })
     .catch(error => {
       console.log('Failed to get genres : ', error);
+
       trendFilmsList.map(movie => (movie.genres = 'Genres N/A'));
+
     });
   refs.gallery.innerHTML = trendFilmsList
     .map(({ id, poster, title, genres, year, vote }) => {
@@ -84,6 +89,7 @@ if(!elem.target.id){
     .join('');
 }
 
+
 async function fetchGanres(page, genre) {
   try {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=e146a7a5146c0f8a3c3cd99167c5b659&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}&with_genres=${genre}`;
@@ -93,6 +99,7 @@ async function fetchGanres(page, genre) {
     console.error(`an error occurred` + error);
   }
 }
+
 
 
 
@@ -153,3 +160,4 @@ function onStartMenu(elem) {
     };
   });
 }
+
