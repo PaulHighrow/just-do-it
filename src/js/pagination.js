@@ -1,14 +1,14 @@
 // https://www.npmjs.com/package/tui-pagination#-documents
 
 import Pagination from 'tui-pagination';
-import apiService from './themoviedb';
-// import { trendingFilms } from './searchInput';
-// import {
-//   trendingFilmsList,
-//   getTrendingMovies,
-//   singleGenre,
-// } from './render-gallery';
-import FetchApi from './fetchaAPI';
+// import apiService from './themoviedb';
+// import FetchApi from './fetchaAPI';
+import { trendingFilms } from './searchInput';
+import {
+  trendingFilmsList,
+  getTrendingMovies,
+  singleGenre,
+} from './render-gallery';
 
 export const paginationOptions = {
   totalItems: 20,
@@ -39,6 +39,7 @@ export let pagination = new Pagination('pagination', paginationOptions);
 //Pagination first start with response from API and create total_pages
 
 export const paginationPage = pagination.getCurrentPage();
+console.log(pagination.getCurrentPage());
 
 export function creatingTotalResultsPagination(res) {
   pagination.reset(res.data.results);

@@ -19,7 +19,7 @@ const observer = new IntersectionObserver(onLoad, options);
 
 form.addEventListener('submit', onSearch);
 
-let counter = 1;
+let counter = 0;
 
 function onLoad(entries, observer) {
   console.log(entries);
@@ -34,7 +34,7 @@ function onLoad(entries, observer) {
 
         if (counter === data.total_pages) {
           observer.unobserve(guard);
-          creatMessageInputTwo();
+          createMessageInputTwo();
         }
         console.log(data.total_pages);
 
@@ -52,12 +52,12 @@ function onClear() {
 
 function onSearch(evn) {
   evn.preventDefault();
-
-  ApiService.searchQuery = evn.currentTarget.elements.searchQuery.value;
-  console.log(ApiService.searchQuery);
-  if (ApiService.searchQuery === '') {
-    onClear();
-    creatMessageInput();
+  // console.log(evn.currentTarget.elements.searchQuery.value);
+  ApiService.searchQuery = evn.currentTarget.elements.searchQuery.value.trim();
+  // console.log(ApiService.searchQuery);
+  if (!ApiService.searchQuery) {
+    // onClear();
+    createMessageInput();
   }
   ApiService.resetPage();
   ApiService.getRequest().then(data => {
@@ -80,7 +80,7 @@ function onSearch(evn) {
 function renderGalleryinput(data) {
   let markup = '';
   data.results.forEach(
-    ({ id, poster_path, genre_ids, title, release_date }) => {
+    ({ id, poster_path = NO_IMAGE, genre_ids, title, release_date }) => {
       let genresStr = getGenresSeach(genre_ids);
       let year = !release_date ? '' : release_date.substring(0, 4);
       if (genresStr && year) genresStr += ' | ';
@@ -119,7 +119,7 @@ getGenres().then(arr => {
   genresList = Array.from(arr.genres);
 });
 
-function creatMessageInput() {
+function createMessageInput() {
   message.insertAdjacentHTML(
     'beforeend',
     `<div class="header__message-error">Search result not successful. Enter the correct movie name!</div>`
@@ -129,7 +129,7 @@ function creatMessageInput() {
   }, 4000);
 }
 
-function creatMessageInputTwo() {
+function createMessageInputTwo() {
   message.insertAdjacentHTML(
     'beforeend',
     `<div class="header__message-error">We're sorry, but you've reached the end of search results.</div>`

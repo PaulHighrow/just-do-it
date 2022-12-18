@@ -1,24 +1,20 @@
-
-.list-button{
-    flex-direction:row;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    display: flex;
-    flex-wrap: wrap;
+.list-button {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-
-
-.button-filter{
-    transition: 0.2s;
-    display: block;
-    width: 132px;
-    height: 30px;
-    margin-left: 4px;
-    margin-top: 4px;
-    background-color: #181818;
-    color: #999;
-    text-align: center;
-    
+.button-filter {
+  transition: 0.2s;
+  display: block;
+  width: 132px;
+  height: 30px;
+  margin-left: 4px;
+  margin-top: 4px;
+  background-color: #181818;
+  color: #999;
+  text-align: center;
 }

@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 import './js/themoviedb';
-import './js/fetchaAPI';
+import './js/fetchAPI';
 import './js/pagination';
 
 import './js/render-gallery';
