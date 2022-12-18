@@ -14,7 +14,7 @@ refs.listButton.addEventListener('click', onSearch);
 
 let trendFilmsList = [];
 let page = 1;
-let genre
+let genre = 1
 async function onSearch(elem) {
   elem.preventDefault();
   form.reset();
