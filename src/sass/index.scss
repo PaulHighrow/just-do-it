@@ -13,10 +13,15 @@
 @import './components/container';
 @import './components/modal';
 @import './components/modalTeam';
+
 @import './components/paginaton';
+@import './components/spinner';
+@import './components/up-btn';
 
 // Layout styles
 @import './layout/header';
 @import './layout/gallery';
 @import './layout/footer';
 @import './layout/header-library';
+
+@import './layout/filter'

@@ -1,4 +1,7 @@
 
+// https://www.npmjs.com/package/tui-pagination#-documents
+
+
 import Pagination from 'tui-pagination';
 import apiService from './themoviedb';
 import { trendingFilms } from './searchInput';
