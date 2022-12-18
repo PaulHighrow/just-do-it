@@ -7,10 +7,7 @@ import './js/render-gallery';
 import './js/modalTeam';
 import './js/searchInput';
 
-
-import './js/filter'
+import './js/filter';
 
 // import './js/spinner';
-import './js/btn-upp';
-
-
+import './js/btn-up';
