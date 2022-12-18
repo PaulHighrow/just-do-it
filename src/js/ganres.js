@@ -13,8 +13,8 @@ const refs = {
 refs.listButton.addEventListener('click', onSearch);
 
 let trendFilmsList = [];
-let genre = 4;
 let page = 1;
+let genre
 async function onSearch(elem) {
   elem.preventDefault();
   form.reset();
@@ -152,4 +152,5 @@ function onStartMenu(elem) {
       }
     };
   });
+
 }
