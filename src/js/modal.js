@@ -14,14 +14,13 @@ function onMovieCardClick(e) {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
-
     const selectedMovie = e.target.closest('.gallery__link');
 
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
 
-     movie
+    movie
       .getFilmDetails(selectedMovieId)
       .then(response => {
         modalMovieToggle();
@@ -93,7 +92,7 @@ function renderMovieInfo({
       src="${poster_path === null ? noPosterImg : BASE_IMG_URL + poster_path}"
       alt="${original_title + ' poster'}"
     />
-  </div>
+ 
   <div class="modalMovie__description-group">
     <h2 class="modalMovie__title">${title}</h2>
     <ul class="modalMovie__data-list">
@@ -108,15 +107,15 @@ function renderMovieInfo({
             <span class="modalMovie__votes-value">${vote_count}</span>
           </p>
       </li>
-      <li class="class="modalMovie__data-item">
+      <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Popularity</p>
           <p class="modalMovie__data-value">${popularity.toFixed(1)}</p>
       </li>
-      <li class="class="modalMovie__data-item">
+      <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Original Title</p>
           <p class="modalMovie__data-value">${original_title}</p>
       </li>
-      <li class="class="modalMovie__data-item">
+      <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Genre</p>
           <p class="modalMovie__data-value">${genresString}</p>
       </li>
@@ -124,13 +123,17 @@ function renderMovieInfo({
     
       <h2 class="modalMovie__description-title">About</h2>
       <p class="modalMovie__description-text">${overview}</p>
+
+      <div class="btn__modal-group">
       <button class="btn-modal btn-modal-watched" type="button">
         add to Watched
       </button>
       <button class="btn-modal btn-modal-queue" type="button">
         add to queue
       </button>
-    </ul>
+      </div>
+      </div>
+   </div>
   </div>`;
 }
 
