@@ -1,6 +1,7 @@
-import { getFilmDetails } from './fetchAPI';
+import FetchApi from './fetchAPI';
 import Spinner from './spinner';
 
+const movie = new FetchApi();
 const spinner = new Spinner();
 
 const galleryEl = document.querySelector('.gallery');
@@ -13,12 +14,13 @@ function onMovieCardClick(e) {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
-    const selectedMovie = e.target.closest('.gallery__item');
+    const selectedMovie = e.target.closest('.gallery__link');
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
 
-    getFilmDetails(selectedMovieId)
+    movie
+      .getFilmDetails(selectedMovieId)
       .then(response => {
         modalMovieToggle();
         modalMovie.innerHTML = renderMovieInfo(response);

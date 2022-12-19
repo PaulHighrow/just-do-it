@@ -9,9 +9,7 @@ import './js/searchInput';
 
 import './js/modal';
 
-
 import './js/filter';
 
-// import './js/spinner';
+import './js/spinner';
 import './js/btn-up';
-
