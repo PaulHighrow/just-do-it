@@ -1,4 +1,6 @@
 //export { renderGallery };
+ import Pagination from 'tui-pagination';
+
 import { getGenres, getTrendingMovies } from './themoviedb.js';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const galleryEl = document.querySelector('.gallery');
@@ -9,6 +11,7 @@ renderGallery(page);
 
 export async function renderGallery(page) {
   await getTrendingMovies(page).then(data => {
+    
     trendFilmsList = [];
     data.results.forEach(movie => {
       let movieData = {

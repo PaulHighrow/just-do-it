@@ -1,0 +1,84 @@
+.wrapper {
+  position: relative;
+}
+
+.div-filter {
+  background-color: rgba(253, 248, 255, 0.95);
+  position: absolute;
+}
+
+.list-button {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-bottom: 25px;
+  margin-top: 20px;
+}
+
+.button-filter {
+  cursor: pointer;
+  transition: 0.2s;
+  display: block;
+  width: 132px;
+  height: 32px;
+  margin-left: 4px;
+  margin-top: 4px;
+  // background-color: #181818;
+  background-color: #fff;
+  // color: whitesmoke;
+  color: #0F171D;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+    box-shadow: (0px 2px 5px #1a0c03);
+  border-radius: 5px;
+
+}
+
+.button-filter:hover,
+.button-filter:focus {
+  color: #ffffff;
+  background-color: #ff6b01;
+   box-shadow: (0px 4px 10px rgba(255, 107, 1, 0.6));
+}
+
+
+.dropdown-menu {
+  display: none;
+}
+
+
+
+.menu-active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filter__icon {
+  fill: currentColor;
+}
+
+
+.dropdown-toggle {
+
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  align-items: center;
+
+  padding: 5px;
+
+  transition-duration: 200ms;
+
+
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+}

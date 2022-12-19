@@ -1,31 +1,47 @@
-import apiService from './themoviedb';
+import { apiService } from './themoviedb';
+import { getGenres } from './themoviedb.js';
+import { renderGallery } from './render-gallery.js';
+
+const NO_IMAGE = 'https://www.iitravel.com/images/no_preview.jpg';
+
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const form = document.querySelector('.search__form');
 const galleryEl = document.querySelector('.gallery');
 const guard = document.querySelector('.js-guard');
+const message = document.querySelector('.header__message');
 
 const options = {
   root: null,
   rootMargin: '200px',
   treshhold: 1.0,
 };
+
 const observer = new IntersectionObserver(onLoad, options);
 
 form.addEventListener('submit', onSearch);
 
-let counter = 20;
+let counter = 1;
 
 function onLoad(entries, observer) {
   console.log(entries);
   entries.forEach(entry => {
     if (entry.isIntersecting) {
+      console.log('See');
+
       ApiService.getRequest().then(data => {
-        renderGallery(data)
-        counter += data.results.length;
-        if (counter >= data.total_results) {
+        counter += 1;
+        renderGalleryinput(data);
+        console.log(data);
+
+        if (counter >= data.total_pages) {
+       
           observer.unobserve(guard);
-          return alert("We're sorry, but you've reached the end of search results.");
+          createMessageInputTwo();
+         
         }
+        console.log(data.total_pages);
+
+        console.log(counter);
       });
     }
   });
@@ -39,65 +55,87 @@ function onClear() {
 
 function onSearch(evn) {
   evn.preventDefault();
-
-  ApiService.searchQuery = evn.currentTarget.elements.searchQuery.value;
-  console.log(ApiService.searchQuery);
-  if (ApiService.searchQuery === '') {
-    onClear();
-    return alert('Sorry, there are no images matching your search query. Please enter something!');
+  // console.log(evn.currentTarget.elements.searchQuery.value);
+  ApiService.searchQuery = evn.currentTarget.elements.searchQuery.value.trim();
+  // console.log(ApiService.searchQuery);
+  if (!ApiService.searchQuery) {
+    // onClear();
+    createMessageInput();
   }
   ApiService.resetPage();
   ApiService.getRequest().then(data => {
     console.log(data);
+    if (data.total_pages === 0) {
+      createMessageInput();
+     return renderGallery(1);
+    }
     onClear();
-    renderGallery(data);
+
+    renderGalleryinput(data);
     observer.observe(guard);
   });
 }
+function renderGalleryinput(data) {
+  let markup = '';
+  data.results.forEach(
+    ({ id, poster_path = NO_IMAGE, genre_ids, title, release_date }) => {
+      let genresStr = getGenresSeach(genre_ids);
+      let year = !release_date ? '' : release_date.substring(0, 4);
+      if (genresStr && year) genresStr += ' | ';
+      if (!title) title = 'no information';
 
-function renderGallery(data) {
-    const markup = data.results
-      .map(image => {
-        const {
-          id,
-          backdrop_path,
-          poster_path,
-          title,
-          original_title,
-          genre_ids,
-          release_date,
-          vote_average,
-        } = image;
-        return `<li class="card">
-    <div class="card_tumb">
-      <img class="card_img" id="${id}" src="${IMG_URL + poster_path}
-  "alt="${title}" />
-    </div>
-    <h2 class="card_title">${original_title}</h2>
-    <div class="card_caption">
-    <ul class="card_list">
-      <li class="card_item">${genre_ids}</li>
-    </ul>
-    <span class="card_year">${release_date.substring(0, 4)}</span>
-    <span class="card__rating">${vote_average}</span>
-    </div>
+      let newImg = !!poster_path ? IMG_URL + poster_path : NO_IMAGE;
+      markup += `<li class="gallery__item">
+    <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
+      <img class="gallery__img" id="${id}" src="${newImg}
+  "alt="${title}" /></div><div class="gallery__descr">
+      <h2 class="gallery__title">${title}</h2>
+      <p class="gallery__text">${genresStr}${year}</p>
+    </div>  
+    </a>
   </li>`;
-      })
-      .join('');
-  
-    galleryEl.insertAdjacentHTML('beforeend', markup);
+    }
+  );
+  galleryEl.innerHTML = markup;
 
-  smoothScroll();
+  galleryEl.insertAdjacentHTML('beforeend', markup);
+}
+let genresList;
+function getGenresSeach(genreSet) {
+  let genreStr = '';
+
+  if (!genreSet) return '';
+  genreSet.forEach(id => {
+    for (const genre of genresList) {
+      if (genre.id === id) genreStr += genre.name + ', ';
+    }
+  });
+
+  return !genreStr ? '' : genreStr.substring(0, genreStr.length - 2);
+}
+getGenres().then(arr => {
+  genresList = Array.from(arr.genres);
+});
+
+function createMessageInput() {
+  message.insertAdjacentHTML(
+    'beforeend',
+    `<div class="header__message-error">Search result not successful. Enter the correct movie name!</div>`
+  );
+  setTimeout(() => {
+    message.innerHTML = '';
+  }, 4000);
+  
+  renderGallery(1);
 
 }
 
-function smoothScroll() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: cardHeight * 2,
-    behavior: 'smooth',
-  });
+function createMessageInputTwo() {
+  message.insertAdjacentHTML(
+    'beforeend',
+    `<div class="header__message-error">We're sorry, but you've reached the end of search results.</div>`
+  );
+  setTimeout(() => {
+    message.innerHTML = '';
+  }, 7000);
 }

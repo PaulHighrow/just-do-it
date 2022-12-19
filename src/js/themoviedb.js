@@ -25,16 +25,6 @@ async function getTrendingMovies(page) {
   }
 }
 
-// renderGallery(getTrendingMovies(1));
-
-console.log(getTrendingMovies(1));
-
-getTrendingMovies(1).then(data => {
-  console.log(data);
-});
-
-// renderGallery(data);
-
 async function getGenres() {
   try {
     const resp = await axios.get(
@@ -46,7 +36,7 @@ async function getGenres() {
         },
       }
     );
-    console.log('getGenres', resp);
+    // console.log('getGenres', resp);
     if (!resp) {
       throw new Error();
     }
@@ -57,31 +47,34 @@ async function getGenres() {
   }
 }
 
-getGenres().then(arr => {
-  console.log(arr);
-});
-
-
-export default class apiService {
+export class apiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
   }
   async getRequest() {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/search/movie?`, {
-        params: {
-          api_key: API_KEY,
-          language: 'en-uk',
-          query: `${this.searchQuery}`,
-          page: `${this.page}`,
-          include_adult: false,
-        },
-      });
-      if (response.data.results.length === 0) {
-        alert('Sorry, there are no movies matching your search query. Please try again.');
-      } 
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?`,
+        {
+          params: {
+            api_key: API_KEY,
+            language: 'en-uk',
+            query: `${this.searchQuery}`,
+            page: `${this.page}`,
+            include_adult: false,
+          },
+        }
+      );
 
+      if (!response) {
+        alert(
+          'Sorry, there are no movies matching your search query. Please try again.'
+        );
+        throw new Error();
+      }
+
+      console.log(response.data);
       this.page += 1;
 
       return response.data;

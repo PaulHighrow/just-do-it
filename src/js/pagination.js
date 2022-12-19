@@ -1,9 +1,13 @@
+// https://www.npmjs.com/package/tui-pagination#-documents
+
 import Pagination from 'tui-pagination';
 
-const container = document.getElementById('tui-pagination-container');
+import { getTrendingMovies } from './themoviedb.js';
+import { renderGallery } from './render-gallery.js';
 
-export const paginationOptions = {
-  totalItems: 0,
+
+const paginationOptions = {
+  totalItems: 20,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -26,4 +30,29 @@ export const paginationOptions = {
       '</a>',
   },
 };
-//export let pagination = new Pagination('pagination', paginationOptions);
+
+let pagination = new Pagination(document.getElementById('pagination'), paginationOptions);
+
+//Pagination first start with response from API and create total_pages
+
+pagination.getCurrentPage();
+
+getTrendingMovies().then(data => {
+   total = data.total_pages;
+  console.log(total);
+  pagination.reset(total);
+});
+
+//Pagination change number of page, Fetch data and Render pages
+pagination.on('afterMove', event => {
+
+  //Current pagination page go to trendingFilms.page
+  const currentPage = event.page;
+  getTrendingMovies().then(data => {
+    data.page.length = currentPage;
+    console.log(currentPage);
+  });
+  renderGallery(currentPage);
+
+});
+

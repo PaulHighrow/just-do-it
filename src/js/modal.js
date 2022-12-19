@@ -1,6 +1,7 @@
-import { getFilmDetails } from './fetchaAPI';
+import FetchApi from './fetchAPI';
 import Spinner from './spinner';
 
+const movie = new FetchApi();
 const spinner = new Spinner();
 
 const galleryEl = document.querySelector('.gallery');
@@ -13,20 +14,22 @@ function onMovieCardClick(e) {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
-    const selectedMovie = e.target.closest('li');
+
+    const selectedMovie = e.target.closest('.gallery__link');
+
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
 
-    getFilmDetails(selectedMovieId)
+     movie
+      .getFilmDetails(selectedMovieId)
       .then(response => {
-      modalMovieToggle();
-      modalMovie.innerHTML = renderMovieInfo(response);
-      addModalMovieListeners();
-      spinner.disable();
-      return response;
+        modalMovieToggle();
+        modalMovie.innerHTML = renderMovieInfo(response);
+        addModalMovieListeners();
+        spinner.disable();
+        return response;
       })
-      
       .catch(error => console.log(error));
   }
 }
@@ -34,7 +37,9 @@ function onMovieCardClick(e) {
 function onCloseModalMovie(e) {
   e.preventDefault();
 
-  const isContainsClass = e.target.classList.contains('close-btn__icon') || e.target.parentNode.classList.contains('close-btn__icon');
+  const isContainsClass =
+    e.target.classList.contains('close-btn__icon') ||
+    e.target.parentNode.classList.contains('close-btn__icon');
 
   if (e.code === 'Escape' || isContainsClass || e.target === backdrop) {
     modalMovieToggle();
@@ -74,7 +79,7 @@ function renderMovieInfo({
   const genresString = genres.map(genre => genre.name).join(', ');
   const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500/';
   const noPosterImg =
-  'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
+    'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 
   return `<button class="btn close-btn" type="button">
     <svg class="close-btn__icon" width="30" height="30">
@@ -95,7 +100,11 @@ function renderMovieInfo({
       <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Vote / Votes</p>
           <p class="modalMovie__data-value">
-            <span class="modalMovie__vote-value">${vote_average.toFixed(1)}</span> /
+
+            <span class="modalMovie__vote-value">${vote_average.toFixed(
+              1
+            )}</span> /
+
             <span class="modalMovie__votes-value">${vote_count}</span>
           </p>
       </li>
@@ -124,7 +133,6 @@ function renderMovieInfo({
     </ul>
   </div>`;
 }
-
 
 function clearModalMovieInfo() {
   modalMovie.innerHTML = '';
