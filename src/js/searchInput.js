@@ -1,54 +1,55 @@
+import Pagination from 'tui-pagination';
+
 import { apiService } from './themoviedb';
 import { getGenres } from './themoviedb.js';
 import { renderGallery } from './render-gallery.js';
+import { addPaginationGallery } from './pagination.js';
 
-const NO_IMAGE = 'https://www.iitravel.com/images/no_preview.jpg';
+const NO_IMAGE = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const form = document.querySelector('.search__form');
 const galleryEl = document.querySelector('.gallery');
-const guard = document.querySelector('.js-guard');
+// const guard = document.querySelector('.js-guard');
 const message = document.querySelector('.header__message');
 
-const options = {
-  root: null,
-  rootMargin: '200px',
-  treshhold: 1.0,
-};
+// const options = {
+//   root: null,
+//   rootMargin: '200px',
+//   treshhold: 1.0,
+// };
 
-const observer = new IntersectionObserver(onLoad, options);
+// const observer = new IntersectionObserver(onLoad, options);
 
 form.addEventListener('submit', onSearch);
 
-let counter = 1;
+// let counter = 1;
 
-function onLoad(entries, observer) {
-  console.log(entries);
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      console.log('See');
+// function onLoad(entries, observer) {
+//   console.log(entries);
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       console.log('See');
 
-      ApiService.getRequest().then(data => {
-        counter += 1;
-        renderGalleryinput(data);
-        console.log(data);
+//       ApiService.getRequest().then(data => {
+//         counter += 1;
+//         renderGalleryinput(data);
+//         console.log(data);
 
-        if (counter >= data.total_pages) {
+//         if (counter >= data.total_pages) {
        
-          observer.unobserve(guard);
-          createMessageInputTwo();
-         
-        }
-        console.log(data.total_pages);
-
-        console.log(counter);
-      });
-    }
-  });
-}
+//           observer.unobserve(guard);
+//           createMessageInputTwo();
+//         }
+//         console.log(data.total_pages);
+//         console.log(counter);
+//       });
+//     }
+//   });
+// }
 
 const ApiService = new apiService();
-
+// let page = 1;
 function onClear() {
   galleryEl.innerHTML = '';
 }
@@ -58,32 +59,37 @@ function onSearch(evn) {
   // console.log(evn.currentTarget.elements.searchQuery.value);
   ApiService.searchQuery = evn.currentTarget.elements.searchQuery.value.trim();
   // console.log(ApiService.searchQuery);
+  // ApiService.page = 1;
   if (!ApiService.searchQuery) {
     // onClear();
     createMessageInput();
   }
   ApiService.resetPage();
   ApiService.getRequest().then(data => {
-    console.log(data);
+    // console.log(data);
+   
     if (data.total_pages === 0) {
       createMessageInput();
-     return renderGallery(1);
     }
     onClear();
-
-    renderGalleryinput(data);
-    observer.observe(guard);
+       renderGalleryinput(data);
+       addPaginationSaerch();
+   
+   
+ 
+    // observer.observe(guard);
   });
 }
+
 function renderGalleryinput(data) {
   let markup = '';
+
   data.results.forEach(
     ({ id, poster_path = NO_IMAGE, genre_ids, title, release_date }) => {
       let genresStr = getGenresSeach(genre_ids);
       let year = !release_date ? '' : release_date.substring(0, 4);
       if (genresStr && year) genresStr += ' | ';
       if (!title) title = 'no information';
-
       let newImg = !!poster_path ? IMG_URL + poster_path : NO_IMAGE;
       markup += `<li class="gallery__item">
     <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
@@ -94,12 +100,13 @@ function renderGalleryinput(data) {
     </div>  
     </a>
   </li>`;
-    }
-  );
+    });
+
   galleryEl.innerHTML = markup;
 
   galleryEl.insertAdjacentHTML('beforeend', markup);
 }
+
 let genresList;
 function getGenresSeach(genreSet) {
   let genreStr = '';
@@ -110,9 +117,9 @@ function getGenresSeach(genreSet) {
       if (genre.id === id) genreStr += genre.name + ', ';
     }
   });
-
   return !genreStr ? '' : genreStr.substring(0, genreStr.length - 2);
 }
+
 getGenres().then(arr => {
   genresList = Array.from(arr.genres);
 });
@@ -125,17 +132,65 @@ function createMessageInput() {
   setTimeout(() => {
     message.innerHTML = '';
   }, 4000);
-  
-  renderGallery(1);
-
+  // renderGallery(1);
+  // addPaginationGallery();
 }
 
-function createMessageInputTwo() {
-  message.insertAdjacentHTML(
-    'beforeend',
-    `<div class="header__message-error">We're sorry, but you've reached the end of search results.</div>`
-  );
-  setTimeout(() => {
-    message.innerHTML = '';
-  }, 7000);
+// function createMessageInputTwo() {
+//   message.insertAdjacentHTML(
+//     'beforeend',
+//     `<div class="header__message-error">We're sorry, but you've reached the end of search results.</div>`
+//   );
+//   setTimeout(() => {
+//     message.innerHTML = '';
+//   }, 7000);
+// }
+
+function addPaginationSaerch(){
+const paginationOptions = {
+  // totalItems: 20,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  page: 1,
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+      '<span class="tui-ico-{{type}}">&#8811</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+      '<span class="tui-ico-{{type}}">&#8810</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+      '<span class="tui-ico-ellip"></span>' +
+      '</a>',
+  },
+};
+
+let pagination = new Pagination(document.getElementById('pagination'), paginationOptions);
+pagination.getCurrentPage();
+
+let total = data.total_results;
+    console.log(total);
+    pagination.reset(total);
+
+//     pagination.on('afterMove', event => {
+
+//   // Current pagination page go to trendingFilms.page
+//   const currentPage = event.page;
+//   ApiService.getRequest().then(data => {
+//     console.log(data.page);
+    
+//     data.page = currentPage;
+//     console.log(currentPage);
+//     // ApiService.page = currentPage;
+    
+
+//   });
+// });
+
 }

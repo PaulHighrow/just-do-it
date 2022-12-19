@@ -1,5 +1,5 @@
 //export { renderGallery };
- import Pagination from 'tui-pagination';
+ import { addPaginationGallery } from './pagination.js';
 
 import { getGenres, getTrendingMovies } from './themoviedb.js';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
@@ -8,6 +8,7 @@ const galleryEl = document.querySelector('.gallery');
 let trendFilmsList = [];
 let page = 1;
 renderGallery(page);
+addPaginationGallery();
 
 export async function renderGallery(page) {
   await getTrendingMovies(page).then(data => {

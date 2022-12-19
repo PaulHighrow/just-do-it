@@ -50,7 +50,7 @@ async function getGenres() {
 export class apiService {
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
+    this.page = '';
   }
   async getRequest() {
     try {
@@ -68,9 +68,6 @@ export class apiService {
       );
 
       if (!response) {
-        alert(
-          'Sorry, there are no movies matching your search query. Please try again.'
-        );
         throw new Error();
       }
 
