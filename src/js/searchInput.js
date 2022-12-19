@@ -1,5 +1,6 @@
 import { apiService } from './themoviedb';
 import { getGenres } from './themoviedb.js';
+import { renderGallery } from './render-gallery.js';
 
 const NO_IMAGE = 'https://www.iitravel.com/images/no_preview.jpg';
 
@@ -19,7 +20,7 @@ const observer = new IntersectionObserver(onLoad, options);
 
 form.addEventListener('submit', onSearch);
 
-let counter = 0;
+let counter = 1;
 
 function onLoad(entries, observer) {
   console.log(entries);
@@ -32,9 +33,11 @@ function onLoad(entries, observer) {
         renderGalleryinput(data);
         console.log(data);
 
-        if (counter === data.total_pages) {
+        if (counter >= data.total_pages) {
+       
           observer.unobserve(guard);
           createMessageInputTwo();
+         
         }
         console.log(data.total_pages);
 
@@ -63,13 +66,8 @@ function onSearch(evn) {
   ApiService.getRequest().then(data => {
     console.log(data);
     if (data.total_pages === 0) {
-      message.insertAdjacentHTML(
-        'beforeend',
-        `<div class="header__message-error">Search result not successful. Enter the correct movie name!</div>`
-      );
-      setTimeout(() => {
-        message.innerHTML = '';
-      }, 4000);
+      createMessageInput();
+     return renderGallery(1);
     }
     onClear();
 
@@ -127,6 +125,9 @@ function createMessageInput() {
   setTimeout(() => {
     message.innerHTML = '';
   }, 4000);
+  
+  renderGallery(1);
+
 }
 
 function createMessageInputTwo() {
