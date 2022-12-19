@@ -1,6 +1,7 @@
 // фонове зображення
 
 .header--library {
+  isolation: isolate;
   height: 230px;
   background-color: rgba(0, 0, 0, 0.56);
   background-image: linear-gradient(

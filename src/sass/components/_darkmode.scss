@@ -1,0 +1,25 @@
+.darkmode--activated button {
+  z-index: 1;
+}
+button.darkmode-toggle {
+  z-index: 1;
+}
+.darkmode--activated {
+  & .tui-is-selected {
+    background: #0084dc;
+  }
+  & .button__library:hover,
+  .button__library:focus {
+    background: #0084dc;
+    border-color: #0084dc;
+  }
+  & .up-btn-wrapper:hover,
+  .up-btn-wrapper:focus {
+    color: #0084dc;
+  }
+  & .dropdown-toggle:hover,
+  .dropdown-toggle:focus {
+    background-color: #0084dc;
+    border-color: #0084dc;
+  }
+}
