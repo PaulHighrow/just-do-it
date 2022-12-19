@@ -8,6 +8,9 @@ button.darkmode-toggle {
   & .tui-is-selected {
     background: #0084dc;
   }
+  & .tui-pagination .tui-page-btn  {
+    color: white;
+  }
   & .button__library:hover,
   .button__library:focus {
     background: #0084dc;
@@ -21,5 +24,6 @@ button.darkmode-toggle {
   .dropdown-toggle:focus {
     background-color: #0084dc;
     border-color: #0084dc;
+
   }
 }

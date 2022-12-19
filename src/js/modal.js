@@ -124,12 +124,13 @@ function renderMovieInfo({
     
       <h2 class="modalMovie__description-title">About</h2>
       <p class="modalMovie__description-text">${overview}</p>
+      <div class="modal-movie-btn-wrapper">
       <button class="btn-modal btn-modal-watched" type="button">
         add to Watched
       </button>
       <button class="btn-modal btn-modal-queue" type="button">
         add to queue
-      </button>
+      </button></div>
     </ul>
   </div>`;
 }
@@ -137,3 +138,4 @@ function renderMovieInfo({
 function clearModalMovieInfo() {
   modalMovie.innerHTML = '';
 }
+
