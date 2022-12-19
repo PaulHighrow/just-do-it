@@ -21,11 +21,11 @@ const paginationOptions = {
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
-      '<span class="tui-ico-{{type}}">:::</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">...' +
-      '<span class="tui-ico-ellip"></span>' +
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+      '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
 };
@@ -40,7 +40,7 @@ let pagination = new Pagination(
 pagination.getCurrentPage();
 
 getTrendingMovies().then(data => {
-  let total = data.total_pages;
+  let total = data.total_results;
   console.log(total);
   pagination.reset(total);
 });
