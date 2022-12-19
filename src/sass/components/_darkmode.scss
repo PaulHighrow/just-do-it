@@ -1,13 +1,33 @@
-.darkmode--activated button {
-  z-index: 1;
+.darkmode--activated body {
+  background-color: #0084dc;
+  & .tui-is-selected {
+    color: white;
+  }
 }
+
 button.darkmode-toggle {
   z-index: 1;
+  bottom: 39px;
+  background-color: #1e2125;
+}
+button.darkmode-toggle--white {
+  background-color: white;
+}
+div.darkmode-layer--button {
+  bottom: 39px;
 }
 .darkmode--activated {
+  & .tui-page-btn {
+    color: white;
+  }
+  &div.tui-pagination {
+    color: white;
+  }
+
   & .tui-is-selected {
     background: #0084dc;
   }
+
   & .button__library:hover,
   .button__library:focus {
     background: #0084dc;
