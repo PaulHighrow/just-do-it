@@ -4,30 +4,27 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const form = document.querySelector('.search__form');
 
 const refs = {
-  listButton: document.querySelector('.list-button'),
-
+  genresList: document.querySelector('.list-button'),
   dropdownToggle: document.querySelectorAll('.dropdown-toggle'),
-  buttonFilter: document.querySelectorAll('.button-filter')
 };
 
-refs.listButton.addEventListener('click', onSearch);
+refs.genresList.addEventListener('click', sortByGenre);
 
 let trendFilmsList = [];
 let genre = 4;
-
 let page = 1;
-async function onSearch(elem) {
+
+async function sortByGenre(elem) {
   elem.preventDefault();
   form.reset();
 
-if(!elem.target.id){
-    return
-}
+  if (!elem.target.id) {
+    return;
+  }
 
   genre = Number(elem.target.id);
   console.log(Number(elem.target.id));
-  await fetchGanres(page, genre).then(data => {
-
+  await fetchGenres(page, genre).then(data => {
     trendFilmsList = [];
     data.results.forEach(movie => {
       let movieData = {
@@ -72,25 +69,24 @@ if(!elem.target.id){
       console.log('Failed to get genres : ', error);
 
       trendFilmsList.map(movie => (movie.genres = 'Genres N/A'));
-
     });
   refs.gallery.innerHTML = trendFilmsList
     .map(({ id, poster, title, genres, year, vote }) => {
       return `<li class="gallery__item">
-  <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
-    <img class="gallery__img" id="${id}" src="${IMG_URL + poster}
-"alt="${title}" /></div><div class="gallery__descr">
-    <h2 class="gallery__title">${title}</h2>
-    <p class="gallery__text">${genres} | ${year}</p>
-  </div>  
-  </a>
-</li>`;
+      <a href="#" class="gallery__link" data-id="${id}">
+      <div class="gallery__thumb">
+      <img class="gallery__img" id="${id}" src="${IMG_URL + poster}
+      "alt="${title}" />
+      </div>
+      <div class="gallery__descr">
+      <h2 class="gallery__title">${title}</h2>
+      <p class="gallery__text">${genres} | ${year}</p>
+      </div></a></li>`;
     })
     .join('');
 }
 
-
-async function fetchGanres(page, genre) {
+async function fetchGenres(page, genre) {
   try {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=e146a7a5146c0f8a3c3cd99167c5b659&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}&with_genres=${genre}`;
     const response = await axios.get(url);
@@ -99,10 +95,6 @@ async function fetchGanres(page, genre) {
     console.error(`an error occurred` + error);
   }
 }
-
-
-
-
 
 let intervalId;
 
@@ -160,4 +152,3 @@ function onStartMenu(elem) {
     };
   });
 }
-
