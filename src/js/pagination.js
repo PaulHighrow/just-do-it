@@ -50,7 +50,7 @@ pagination.on('afterMove', event => {
   //Current pagination page go to trendingFilms.page
   const currentPage = event.page;
   getTrendingMovies().then(data => {
-    data.page.length = currentPage;
+    data.page = currentPage;
     console.log(currentPage);
   });
   renderGallery(currentPage);
