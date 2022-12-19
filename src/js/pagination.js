@@ -5,7 +5,6 @@ import Pagination from 'tui-pagination';
 import { getTrendingMovies } from './themoviedb.js';
 import { renderGallery } from './render-gallery.js';
 
-
 const paginationOptions = {
   totalItems: 20,
   itemsPerPage: 20,
@@ -22,37 +21,37 @@ const paginationOptions = {
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
-      '<span class="tui-ico-{{type}}">:::</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">...' +
-      '<span class="tui-ico-ellip"></span>' +
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+      '<span class="tui-ico-ellip">...</span>' +
       '</a>',
   },
 };
 
-let pagination = new Pagination(document.getElementById('pagination'), paginationOptions);
+let pagination = new Pagination(
+  document.getElementById('pagination'),
+  paginationOptions
+);
 
 //Pagination first start with response from API and create total_pages
 
 pagination.getCurrentPage();
 
 getTrendingMovies().then(data => {
-   total = data.total_pages;
+  let total = data.total_results;
   console.log(total);
   pagination.reset(total);
 });
 
 //Pagination change number of page, Fetch data and Render pages
 pagination.on('afterMove', event => {
-
   //Current pagination page go to trendingFilms.page
   const currentPage = event.page;
   getTrendingMovies().then(data => {
-    data.page.length = currentPage;
+    data.page = currentPage;
     console.log(currentPage);
   });
   renderGallery(currentPage);
-
 });
-
