@@ -14,12 +14,14 @@ function onMovieCardClick(e) {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
+
     const selectedMovie = e.target.closest('.gallery__link');
+
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
 
-    movie
+     movie
       .getFilmDetails(selectedMovieId)
       .then(response => {
         modalMovieToggle();
@@ -28,7 +30,6 @@ function onMovieCardClick(e) {
         spinner.disable();
         return response;
       })
-
       .catch(error => console.log(error));
   }
 }
@@ -99,9 +100,11 @@ function renderMovieInfo({
       <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Vote / Votes</p>
           <p class="modalMovie__data-value">
+
             <span class="modalMovie__vote-value">${vote_average.toFixed(
               1
             )}</span> /
+
             <span class="modalMovie__votes-value">${vote_count}</span>
           </p>
       </li>

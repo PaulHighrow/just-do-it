@@ -76,7 +76,24 @@
   color: #000;
 
   cursor: pointer;
-}
+
+  text-decoration: none;
+  transition: transform 0.5s;
+  
+    &:hover {
+      fill: #000;
+      border-radius: 100%;
+      border: 1px solid rgba(67, 31, 61, 0.3);
+      transform: rotate(360deg);
+      opacity: 1;
+      box-shadow: 0 0 1px 5px rgba(#270c16, 0.4), 0 0 1px 10px rgba(#8a3b58, 0.1),
+        0 0 1px 15px rgba(#270c16, 0.1);
+    }
+  
+    &:active {
+      transform: scale(0.9);
+    }
+  }
 
 .close-btn__icon {
   fill: currentColor;
