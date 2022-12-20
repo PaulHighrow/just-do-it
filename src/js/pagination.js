@@ -4,6 +4,7 @@ import Pagination from 'tui-pagination';
 
 import { getTrendingMovies } from './themoviedb.js';
 import { renderGallery } from './render-gallery.js';
+//import { renderSavedFilm } from './libraryStorage';
 
 export function addPaginationGallery() {
   const paginationOptions = {
@@ -15,7 +16,7 @@ export function addPaginationGallery() {
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
       currentPage:
-        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+        '<strong class="tui-page-btn tui-is-selected" >{{page}}</strong>',
       moveButton:
         '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
         '<span class="tui-ico-{{type}}"></span>' +
@@ -37,8 +38,7 @@ export function addPaginationGallery() {
   );
 
   //Pagination first start with response from API and create total_pages
-
-  pagination.getCurrentPage();
+  //
 
   getTrendingMovies().then(data => {
     let total = data.total_results;
@@ -54,6 +54,18 @@ export function addPaginationGallery() {
       data.page = currentPage;
       console.log(currentPage);
     });
-    renderGallery(currentPage);
+    // renderSavedFilm().then(data=>
+    //   data.page = currentPage)
+    
+    renderGallery()
+    backToTop()
+    
   });
+}
+
+ function backToTop() {
+  if (window.pageYOffset > 0) {
+    window.scrollBy(0, -30);
+    setTimeout(backToTop, 0);
+  }
 }
