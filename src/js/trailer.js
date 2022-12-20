@@ -9,9 +9,10 @@ const getMoviesTrailer = async key => {
   const { data } = await axios.get(
     `${BASE_URL}movie/${key}/videos?api_key=${API_KEY}`
   );
+  console.log(data);
 
   return data.results.filter(item => {
-    if (item.site === 'YouTube') {
+    if (item.site === 'YouTube' && item.name.includes('Official Trailer')) {
       return item;
     }
   });
