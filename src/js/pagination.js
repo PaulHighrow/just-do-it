@@ -7,7 +7,7 @@ import { renderGallery } from './render-gallery.js';
 
 export function addPaginationGallery() {
   const paginationOptions = {
-    // totalItems: total,
+    totalItems: 0,
     itemsPerPage: 20,
     visiblePages: 5,
     page: 1,
@@ -32,9 +32,7 @@ export function addPaginationGallery() {
   };
 
   let pagination = new Pagination(
-    document.getElementById('pagination'),
-    paginationOptions
-  );
+    document.getElementById('pagination'), paginationOptions);
 
   //Pagination first start with response from API and create total_pages
 
@@ -48,7 +46,8 @@ export function addPaginationGallery() {
 
   //Pagination change number of page, Fetch data and Render pages
   pagination.on('afterMove', event => {
-    //Current pagination page go to trendingFilms.page
+
+  //Current pagination page go to trendingFilms.page
   const currentPage = event.page;
   getTrendingMovies().then(data => {
     data.page = currentPage;
@@ -57,3 +56,5 @@ export function addPaginationGallery() {
     renderGallery(currentPage);
   });
 }
+
+

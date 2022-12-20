@@ -50,9 +50,8 @@ async function getGenres() {
 export class apiService {
   constructor() {
     this.searchQuery = '';
-    this.page = '';
   }
-  async getRequest() {
+  async getRequest(page) {
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?`,
@@ -61,27 +60,20 @@ export class apiService {
             api_key: API_KEY,
             language: 'en-uk',
             query: `${this.searchQuery}`,
-            page: `${this.page}`,
+            page: page,
             include_adult: false,
           },
         }
       );
-
       if (!response) {
         throw new Error();
       }
-
       console.log(response.data);
-      this.page += 1;
-
       return response.data;
+
     } catch (error) {
       console.error(error);
     }
-  }
-
-  resetPage() {
-    this.page = 1;
   }
 }
 
