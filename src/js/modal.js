@@ -1,4 +1,5 @@
 import FetchApi from './fetchAPI';
+// import { localStorageFunction } from './libraryStorage';
 import Spinner from './spinner';
 
 const movie = new FetchApi();
@@ -14,14 +15,13 @@ function onMovieCardClick(e) {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
-
     const selectedMovie = e.target.closest('.gallery__link');
 
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
 
-     movie
+    movie
       .getFilmDetails(selectedMovieId)
       .then(response => {
         modalMovieToggle();
@@ -30,7 +30,10 @@ function onMovieCardClick(e) {
         spinner.disable();
         return response;
       })
-      .catch(error => console.log(error));
+      .then(response => {
+        localStorageFunction(response);
+      })
+      .catch(error => console.error(error));
   }
 }
 
@@ -82,8 +85,8 @@ function renderMovieInfo({
     'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 
   return `<button class="btn close-btn" type="button">
-    <svg class="close-btn__icon" width="30" height="30">
-      <use href="./images/sprite.svg#icon-close"></use>
+    <svg class="close-btn__icon" width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M23.733 10.304l-1.504-1.504-5.963 5.963-5.963-5.963-1.504 1.504 5.963 5.963-5.963 5.963 1.504 1.504 5.963-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.963z"></path>
     </svg>
   </button>
 
@@ -93,7 +96,7 @@ function renderMovieInfo({
       src="${poster_path === null ? noPosterImg : BASE_IMG_URL + poster_path}"
       alt="${original_title + ' poster'}"
     />
-  </div>
+ 
   <div class="modalMovie__description-group">
     <h2 class="modalMovie__title">${title}</h2>
     <ul class="modalMovie__data-list">
@@ -108,15 +111,15 @@ function renderMovieInfo({
             <span class="modalMovie__votes-value">${vote_count}</span>
           </p>
       </li>
-      <li class="class="modalMovie__data-item">
+      <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Popularity</p>
           <p class="modalMovie__data-value">${popularity.toFixed(1)}</p>
       </li>
-      <li class="class="modalMovie__data-item">
+      <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Original Title</p>
           <p class="modalMovie__data-value">${original_title}</p>
       </li>
-      <li class="class="modalMovie__data-item">
+      <li class="modalMovie__data-item">
           <p class="modalMovie__data-title">Genre</p>
           <p class="modalMovie__data-value">${genresString}</p>
       </li>
@@ -124,13 +127,17 @@ function renderMovieInfo({
     
       <h2 class="modalMovie__description-title">About</h2>
       <p class="modalMovie__description-text">${overview}</p>
-      <button class="btn-modal btn-modal-watched" type="button">
+
+      <div class="btn__modal-group">
+      <button class="btn-modal btn-modal-watched" type="button" data-action="watch">
         add to Watched
       </button>
-      <button class="btn-modal btn-modal-queue" type="button">
+      <button class="btn-modal btn-modal-queue" type="button" data-action="queue">
         add to queue
       </button>
-    </ul>
+      </div>
+      </div>
+   </div>
   </div>`;
 }
 
