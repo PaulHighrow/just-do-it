@@ -1,5 +1,5 @@
 import FetchApi from './fetchAPI';
-import { localStorageFunction } from './libraryStorage';
+// import { localStorageFunction } from './libraryStorage';
 import Spinner from './spinner';
 
 const movie = new FetchApi();
@@ -33,7 +33,7 @@ function onMovieCardClick(e) {
       .then(response => {
         localStorageFunction(response);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   }
 }
 
