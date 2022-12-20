@@ -51,18 +51,26 @@
     width: 806px;
     /* height: 558px; */
   }
+
+    &.modal-open {
+      overflow: hidden;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 }
 
-.modal::-webkit-scrollbar {
-  display: none;
-}
+
 
 .backdrop.is-hidden,
 .modal.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  overflow: hidden;
 }
+
 
 .close-btn {
   position: absolute;
@@ -247,27 +255,33 @@
 .btn-modal-watched {
   // margin-right: 15px;
   padding: 6px 27px 6px 27px;
-  background-color: #ff6b01;
-  border-color: transparent;
-  color: #ffffff;
+  
 }
 
 .btn-modal-queue {
-        padding: 14px 9px 12px 9px;
+  padding: 14px 9px 12px 9px;
   @media screen and (min-width: 768px) {
     padding: 14px 7px 12px 7px;
   }
-  background-color: #ffffff;
-  color: #000000;
+  
 }
 
 .btn__modal-group {
   display: flex;
   justify-content: space-between;
 
+  background-color: #ffffff;
+  color: #000000;
+
   @media screen and (min-width: 1280px) {
     justify-content: start;
     margin-left: 8px;
     gap: 15px;
   }
+}
+
+.button--accent-btn {
+  background-color: #ff6b01;
+  border-color: transparent;
+  color: #ffffff;
 }
