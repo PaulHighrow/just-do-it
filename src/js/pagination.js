@@ -38,7 +38,7 @@ export function addPaginationGallery() {
   );
 
   //Pagination first start with response from API and create total_pages
-  //
+  pagination.getCurrentPage();
 
   getTrendingMovies().then(data => {
     let total = data.total_results;
@@ -56,14 +56,13 @@ export function addPaginationGallery() {
     });
     // renderSavedFilm().then(data=>
     //   data.page = currentPage)
-    
-    renderGallery()
-    backToTop()
-    
+
+    renderGallery(currentPage);
+    backToTop();
   });
 }
 
- function backToTop() {
+function backToTop() {
   if (window.pageYOffset > 0) {
     window.scrollBy(0, -30);
     setTimeout(backToTop, 0);
