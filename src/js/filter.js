@@ -8,26 +8,23 @@ const form = document.querySelector('.search__form');
 
 const refs = {
   genresList: document.querySelector('.genres'),
-  filterNavBtn: document.querySelectorAll('.navigation__filter''),
+  filterNavBtn: document.querySelector('.navigation__filter'),
   gallery: document.querySelector('.gallery'),
 };
-
-refs.filterNavBtn.addEventListener('click', showGenreFilter);
-refs.genresList.addEventListener('click', sortByGenre);
 
 console.log(refs.genresList);
 console.log(refs.filterNavBtn);
 
 const showGenreFilter = () => refs.genresList.classList.toggle('genres--shown');
 
+refs.filterNavBtn.addEventListener('click', showGenreFilter);
+refs.genresList.addEventListener('click', sortByGenre);
 
 let trendFilmsList = [];
 let genre = 4;
 let page = 1;
 
-
 async function sortByGenre(elem) {
-
   elem.preventDefault();
   form.reset();
 
@@ -109,64 +106,62 @@ async function fetchGenres(page, genre) {
   }
 }
 
-let intervalId;
+// let intervalId;
 
-refs.dropdownToggle.forEach(elem => {
-  elem.addEventListener('click', onStartMenu);
-});
+// refs.dropdownToggle.forEach(elem => {
+//   elem.addEventListener('click', onStartMenu);
+// });
 
-function onStartMenu(elem) {
-  const menu = elem.currentTarget.dataset.path;
-  document.querySelectorAll('.dropdown-menu').forEach(elem => {
-    if (
-      !document
-        .querySelector(`[data-target=${menu}]`)
-        .classList.contains('open')
-    ) {
-      elem.classList.remove('menu-active');
-      elem.classList.remove('open');
+// function onStartMenu(elem) {
+//   const menu = elem.currentTarget.dataset.path;
+//   document.querySelectorAll('.dropdown-menu').forEach(elem => {
+//     if (
+//       !document
+//         .querySelector(`[data-target=${menu}]`)
+//         .classList.contains('open')
+//     ) {
+//       elem.classList.remove('menu-active');
+//       elem.classList.remove('open');
 
-      document
-        .querySelector(`[data-target=${menu}]`)
-        .classList.add('menu-active');
-      intervalId = setTimeout(() => {
-        document.querySelector(`[data-target=${menu}]`).classList.add('open');
-      }, 0);
-    }
+//       document
+//         .querySelector(`[data-target=${menu}]`)
+//         .classList.add('menu-active');
+//       intervalId = setTimeout(() => {
+//         document.querySelector(`[data-target=${menu}]`).classList.add('open');
+//       }, 0);
+//     }
 
-    if (
-      document.querySelector(`[data-target=${menu}]`).classList.contains('open')
-    ) {
-      clearTimeout(intervalId);
-      document
-        .querySelector(`[data-target=${menu}]`)
-        .classList.remove('menu-active');
-      intervalId = setTimeout(() => {
-        document
-          .querySelector(`[data-target=${menu}]`)
-          .classList.remove('open');
-      }, 0);
-    }
+//     if (
+//       document.querySelector(`[data-target=${menu}]`).classList.contains('open')
+//     ) {
+//       clearTimeout(intervalId);
+//       document
+//         .querySelector(`[data-target=${menu}]`)
+//         .classList.remove('menu-active');
+//       intervalId = setTimeout(() => {
+//         document
+//           .querySelector(`[data-target=${menu}]`)
+//           .classList.remove('open');
+//       }, 0);
+//     }
 
-    window.onclick = elem => {
-      if (
-        elem.target === document.querySelector(`[data-target=${menu}]`) ||
-        elem.target === document.querySelector(`[data-path=${menu}]`)
-      ) {
-        return;
-      } else {
-        document
-          .querySelector(`[data-target=${menu}]`)
-          .classList.remove('menu-active');
-        document
-          .querySelector(`[data-target=${menu}]`)
-          .classList.remove('open');
-      }
-    };
-  });
-}
-
-
+//     window.onclick = elem => {
+//       if (
+//         elem.target === document.querySelector(`[data-target=${menu}]`) ||
+//         elem.target === document.querySelector(`[data-path=${menu}]`)
+//       ) {
+//         return;
+//       } else {
+//         document
+//           .querySelector(`[data-target=${menu}]`)
+//           .classList.remove('menu-active');
+//         document
+//           .querySelector(`[data-target=${menu}]`)
+//           .classList.remove('open');
+//       }
+//     };
+//   });
+// }
 
 // import axios from 'axios';
 // import { getGenres } from './themoviedb.js';
