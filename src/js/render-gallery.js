@@ -1,9 +1,7 @@
-//export { renderGallery };
- import Pagination from 'tui-pagination';
-
 import { getGenres, getTrendingMovies } from './themoviedb.js';
+
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
-const galleryEl = document.querySelector('.gallery');
+export const galleryEl = document.querySelector('.gallery');
 
 let trendFilmsList = [];
 let page = 1;
@@ -11,7 +9,6 @@ renderGallery(page);
 
 export async function renderGallery(page) {
   await getTrendingMovies(page).then(data => {
-    
     trendFilmsList = [];
     data.results.forEach(movie => {
       let movieData = {
@@ -56,17 +53,18 @@ export async function renderGallery(page) {
       console.log('Failed to get genres : ', error);
       popularMoviesList.map(movie => (movie.genres = 'Genres N/A'));
     });
-  
-  const markup = trendFilmsList.map(({ id, poster, title, genres, year, vote }) => {
-    return `<li class="gallery__item">
+
+  const markup = trendFilmsList
+    .map(({ id, poster, title, genres, year, vote }) => {
+      return `<li class="gallery__item">
     <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
     <img class="gallery__img" id="${id}" src="${IMG_URL + poster}
     "alt="${title}" /></div><div class="gallery__descr">
     <h2 class="gallery__title">${title}</h2>
     <p class="gallery__text">${genres} | ${year}</p>
     </div></a></li>`;
-  }).join('');
-  
+    })
+    .join('');
+
   galleryEl.innerHTML = markup;
-};
-  
+}

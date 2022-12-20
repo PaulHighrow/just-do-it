@@ -1,10 +1,13 @@
-
 import { renderGallery } from './render-gallery';
+import { galleryEl } from './render-gallery';
 
 const noFilmsMessage = document.querySelector('.alert__message');
 const queueButton = document.querySelector('.queue_button');
 const watchedButton = document.querySelector('.watched_button');
 const isWatchTabActive = true;
+
+console.log(watchedButton);
+console.log(galleryEl);
 
 const addToStorage = (key, value) => {
   try {
