@@ -13,12 +13,6 @@
 
   transition: opacity 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275),
     visibility 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-  @media screen and (min-width: 1280px) {
-    opacity: 0;
-
-    background-color: none;
-  }
 }
 
 .modal {
@@ -136,22 +130,12 @@
   }
 }
 
-.modalMovie__description-group {
-  @media screen and (min-width: 768px) {
-    padding-left: 40px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 391px;
-  }
-}
-
 .modalMovie__title {
   font-weight: 500;
-  font-size: 20px;
-  line-height: 1.15;
+  font-size: 30px;
+  line-height: 1.16;
   color: #000000;
   text-transform: uppercase;
-  text-align: left;
   margin-bottom: 20px;
 }
 
@@ -165,12 +149,16 @@
 }
 
 .modalMovie__data-title {
-  width: 100px;
+  width: 110px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.3;
   color: #8c8c8c;
   text-align: left;
+
+  @media screen and (min-width: 1280px) {
+    width: 170px;
+  }
 }
 
 .modalMovie__data-value {
@@ -262,7 +250,7 @@
 
 .btn__modal-group {
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
 
   //background-color: #ffffff;
   //color: #000000;
@@ -270,7 +258,6 @@
   @media screen and (min-width: 1280px) {
     justify-content: start;
     margin-left: 8px;
-    gap: 15px;
   }
 }
 
