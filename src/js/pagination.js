@@ -36,7 +36,7 @@ export function addPaginationGallery() {
     document.getElementById('pagination'), paginationOptions);
 
   //Pagination first start with response from API and create total_pages
-  
+  //
 
   getTrendingMovies().then(data => {
     let total = data.total_results;
