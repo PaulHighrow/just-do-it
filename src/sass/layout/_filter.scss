@@ -1,3 +1,4 @@
+
 .genres {
   // position: relative;
   // z-index: 25;
@@ -22,6 +23,7 @@
   position: absolute;
   top: 80;
   right: calc(((100vw - 120px) / 2));
+
 
   @media screen and (min-width: 768px) {
     right: calc(((100vw - 566px) / 2));
