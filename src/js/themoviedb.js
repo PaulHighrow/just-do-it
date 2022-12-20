@@ -68,9 +68,8 @@ export class apiService {
       if (!response) {
         throw new Error();
       }
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
-
     } catch (error) {
       console.error(error);
     }

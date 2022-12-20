@@ -22,23 +22,22 @@ function onClear() {
   galleryEl.innerHTML = '';
 }
 
-function onSearch(evn) {
+async function onSearch(evn) {
   evn.preventDefault();
 
-  ApiService.searchQuery = evn.currentTarget.elements.searchQuery.value.trim();
-
-  // console.log(ApiService.searchQuery);
+  ApiService.searchQuery = form.elements.searchQuery.value.trim();
 
   if (!ApiService.searchQuery) {
     createMessageInput();
+    return;
   }
 
-  ApiService.getRequest(page).then(data => {
+  const request = await ApiService.getRequest(page).then(data => {
     console.log(data);
     renderGalleryinput(page);
-    if (data.total_pages === 0) {
+    if (!data.total_pages) {
       createMessageInput();
-      return renderGallery(1);
+      return;
     }
     onClear();
 
@@ -73,12 +72,10 @@ function onSearch(evn) {
     pagination.getCurrentPage();
 
     let total = data.total_results;
-    console.log(total);
     pagination.reset(total);
     pagination.on('afterMove', event => {
-      //   // Current pagination page go to trendingFilms.page
+      // Current pagination page go to trendingFilms.page
       let currentPage = event.page;
-      console.log(currentPage);
       ApiService.getRequest(page).then(data => {
         data.page = currentPage;
       });
@@ -98,20 +95,20 @@ function renderGalleryinput(page) {
         if (!title) title = 'no information';
         let newImg = !!poster_path ? IMG_URL + poster_path : NO_IMAGE;
         markup += `<li class="gallery__item">
-    <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
-      <img class="gallery__img" id="${id}" src="${newImg}
-  "alt="${title}" /></div><div class="gallery__descr">
-      <h2 class="gallery__title">${title}</h2>
-      <p class="gallery__text">${genresStr}${year}</p>
-    </div>  
-    </a>
-  </li>`;
+          <a href="#" class="gallery__link" data-id="${id}">
+          <div class="gallery__thumb">
+          <img class="gallery__img" id="${id}" src="${newImg} "alt="${title}" />
+          </div>
+          <div class="gallery__descr">
+          <h2 class="gallery__title">${title}</h2>
+          <p class="gallery__text">${genresStr}${year}</p>
+          </div>
+          </a>
+          </li>`;
       }
     );
 
     galleryEl.innerHTML = markup;
-
-    galleryEl.insertAdjacentHTML('beforeend', markup);
   });
 }
 
