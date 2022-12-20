@@ -57,17 +57,17 @@ export async function renderGallery(page) {
       console.log('Failed to get genres : ', error);
       popularMoviesList.map(movie => (movie.genres = 'Genres N/A'));
     });
-  galleryEl.innerHTML = trendFilmsList
-    .map(({ id, poster, title, genres, year, vote }) => {
-      return `<li class="gallery__item">
-  <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
+  
+  const markup = trendFilmsList.map(({ id, poster, title, genres, year, vote }) => {
+    return `<li class="gallery__item">
+    <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
     <img class="gallery__img" id="${id}" src="${IMG_URL + poster}
-"alt="${title}" /></div><div class="gallery__descr">
+    "alt="${title}" /></div><div class="gallery__descr">
     <h2 class="gallery__title">${title}</h2>
     <p class="gallery__text">${genres} | ${year}</p>
-  </div>  
-  </a>
-</li>`;
-    })
-    .join('');
-}
+    </div></a></li>`;
+  }).join('');
+  
+  galleryEl.innerHTML = markup;
+};
+  

@@ -46,7 +46,6 @@ export function addPaginationGallery() {
 
   //Pagination change number of page, Fetch data and Render pages
   pagination.on('afterMove', event => {
-
   //Current pagination page go to trendingFilms.page
   const currentPage = event.page;
   getTrendingMovies().then(data => {
@@ -56,5 +55,3 @@ export function addPaginationGallery() {
     renderGallery(currentPage);
   });
 }
-
-

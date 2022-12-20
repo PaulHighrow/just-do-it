@@ -5,8 +5,8 @@
 }
 .up-btn-wrapper {
   position: fixed;
-  bottom: 39px;
-  right: 10px;
+  bottom: 32px;
+  right: 32px;
 
   z-index: 10;
 
@@ -22,34 +22,9 @@
   &:focus {
     color: var(--secondary-color);
   }
-
-  @media screen and (min-width: 320px) {
-    bottom: 39px;
-    right: calc(((100vw - 340px) / 2));
-  }
-
-  @media screen and (min-width: 768px) {
-    bottom: 39px;
-    right: calc(((100vw - 768px) / 2));
-  }
-
-  @media screen and (min-width: 1280px) {
-    bottom: 55px;
-    right: calc(((100vw - 1280px) / 2));
-  }
 }
 
 .up-btn__icon {
-  width: 40px;
-  height: 40px;
-
-  @media screen and (min-width: 768px) {
-    width: 50px;
-    height: 50px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 60px;
-    height: 60px;
-  }
+  width: 48px;
+  height: 48px;
 }

@@ -1,84 +1,86 @@
-.wrapper {
-  position: relative;
+.genres {
+  // position: relative;
+  // z-index: 25;
 }
 
-.div-filter {
-  background-color: rgba(253, 248, 255, 0.95);
+// .genres__list {
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 5px;
+//   display: flex;
+//   flex-wrap: wrap;
+
+//   margin-bottom: 25px;
+//   margin-top: 20px;
+// }
+
+.genres__list {
+  background-color: transparent;
+  // z-index: 1;
+
   position: absolute;
+  top: 80;
+  right: calc(((100vw - 120px) / 2));
+
+  @media screen and (min-width: 768px) {
+    right: calc(((100vw - 566px) / 2));
+  }
+
+  @media screen and (min-width: 1280px) {
+    right: calc(((100vw - 1080px) / 2));
+  }
 }
 
-.list-button {
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  display: flex;
-  flex-wrap: wrap;
-
-  margin-bottom: 25px;
-  margin-top: 20px;
+.genres__item {
 }
 
-.button-filter {
-  cursor: pointer;
-  transition: 0.2s;
+.genres__btn {
+  position: relative;
+  z-index: 1;
+  transition: var(--animation-global);
   display: block;
-  width: 132px;
-  height: 32px;
-  margin-left: 4px;
-  margin-top: 4px;
-  // background-color: #181818;
+  width: 100%;
+  padding: 10px;
+
   background-color: #fff;
   // color: whitesmoke;
-  color: #0F171D;
+  color: #0f171d;
   text-align: center;
   border: none;
-  border-bottom: 1px solid #ffffff;
-    box-shadow: (0px 2px 5px #1a0c03);
-  border-radius: 5px;
-
 }
 
-.button-filter:hover,
-.button-filter:focus {
+.genres__btn:hover,
+.genres__btn:focus {
   color: #ffffff;
   background-color: #ff6b01;
-   box-shadow: (0px 4px 10px rgba(255, 107, 1, 0.6));
+  box-shadow: (0px 4px 10px rgba(255, 107, 1, 0.6));
 }
 
-
-.dropdown-menu {
+.genres {
   display: none;
 }
 
-
-
-.menu-active {
+.genres--shown {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.filter__icon {
-  fill: currentColor;
-}
 
-
-.dropdown-toggle {
-
+.navigation__filter {
   cursor: pointer;
   border: none;
   background-color: transparent;
   align-items: center;
 
   padding: 5px;
-
-  transition-duration: 200ms;
-
-
 }
 
-.dropdown-toggle:hover,
-.dropdown-toggle:focus {
-  border: 1px solid #ffffff;
-  border-radius: 3px;
+.filter__icon {
+  fill: currentColor;
+}
+
+.navigation__filter:hover,
+.navigation__filter:focus {
+  fill: #ff001b;
 }

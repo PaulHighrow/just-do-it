@@ -1,0 +1,17 @@
+.sorry {
+    color: getColor(accent-text-color);
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.string__alert {
+    @include lh(14px, 17px, 17px);
+    font-weight: 700;
+
+}
+
+.alert__message {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
