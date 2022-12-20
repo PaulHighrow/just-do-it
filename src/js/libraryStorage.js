@@ -119,7 +119,7 @@ watchedButton.addEventListener('click', handleClickWatched);
 queueButton.addEventListener('click', handleClickQueue);
 
 renderSavedFilms('watch');
-
+addPaginationGallery();
 function handleClickQueue() {
   renderSavedFilms('queue');
   removeDisabled(watchedButton);

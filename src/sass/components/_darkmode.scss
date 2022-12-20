@@ -48,4 +48,37 @@ button.darkmode-toggle--white {
     background-color: #0084dc;
     border-color: #0084dc;
   }
+  & .modal
+  {border-radius: 15px;
+   
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(109, 103, 103));
+    
+
+    color:#030203;
+  }
+  & .close-btn{
+   
+  background-color: transparent;
+  color: rgb(225, 223, 231);
+  }
+  & .modalMovie__title{
+   
+    color:#4d321f;
+}
+& .modalMovie__data-title{
+   
+  color:#5c534c;
+}
+& .modalMovie__description-title{
+   
+  color:#7a3f0e;
+}
+& .modalMovie__description-text{
+   
+  color:#080808;
+}
+& .modal__team{border-radius: 15px;
+
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(109, 103, 103));}
+
 }

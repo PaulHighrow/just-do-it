@@ -139,6 +139,8 @@
 }
 
 .modalMovie__description-group {
+  // margin-left: 40px;
+  padding-left: 40px;
   @media screen and (min-width: 768px) {
     width: 264px;
   }
@@ -229,6 +231,7 @@
   line-height: 1.7;
   color: #000000;
   text-align: left;
+  padding: 0px 10px 0px 0px;
   margin-bottom: 20px;
 }
 
@@ -255,7 +258,9 @@
 .btn-modal-watched {
   // margin-right: 15px;
   padding: 6px 27px 6px 27px;
-  
+  background-color: #ff6b01;
+  color:#faefe7;
+  border: none;
 }
 
 .btn-modal-queue {
@@ -270,8 +275,8 @@
   display: flex;
   justify-content: space-between;
 
-  background-color: #ffffff;
-  color: #000000;
+  //background-color: #ffffff;
+  //color: #000000;
 
   @media screen and (min-width: 1280px) {
     justify-content: start;

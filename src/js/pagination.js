@@ -4,6 +4,7 @@ import Pagination from 'tui-pagination';
 
 import { getTrendingMovies } from './themoviedb.js';
 import { renderGallery } from './render-gallery.js';
+//import { renderSavedFilm } from './libraryStorage';
 
 export function addPaginationGallery() {
   const paginationOptions = {
@@ -51,9 +52,12 @@ export function addPaginationGallery() {
     data.page = currentPage;
     console.log(currentPage);
     });
-    renderGallery(currentPage);
+    // renderSavedFilm().then(data=>
+    //   data.page = currentPage)
     
+    renderGallery()
     backToTop()
+    
   });
 }
 
