@@ -19,10 +19,17 @@ button.darkmode-toggle--white {
   & .tui-page-btn {
     color: white;
   }
-  &div.tui-pagination {
+  & .tui-pagination {
     color: white;
   }
-
+  & div.tui-pagination {
+    color: white;
+  }
+  & .tui-pagination .tui-page-btn:hover {
+  color:#92ee1a;
+   border-radius: 5px;
+ }
+ 
   & .tui-is-selected {
     background: #0084dc;
   }

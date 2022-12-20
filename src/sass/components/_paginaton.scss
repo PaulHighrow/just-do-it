@@ -49,7 +49,7 @@
 }
 
 .tui-pagination .tui-page-btn:hover {
- 
+ color: #92ee1a;
   border-radius: 5px;
 }
 
@@ -57,7 +57,7 @@
 .tui-pagination strong {
   color: #fff;
   background: #ff6b08;
-  cursor: default;
+  cursor: pointer;
   width: 40px;
   height: 40px;
   padding-top: 12px;
