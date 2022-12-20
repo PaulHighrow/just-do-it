@@ -58,7 +58,7 @@ export async function renderGallery(page) {
 
   const markup = trendFilmsList
     .map(({ id, poster, title, genres, year, vote }) => {
-      return `<li class="gallery__item">
+      return `<li class="gallery__item" data-id="${id}">
     <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
     <img class="gallery__img" id="${id}" src="${IMG_URL + poster}
     "alt="${title}" /></div><div class="gallery__descr">

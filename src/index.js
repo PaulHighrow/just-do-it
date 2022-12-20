@@ -9,7 +9,7 @@ import './js/modalTeam';
 import './js/searchInput';
 
 import './js/modal';
-
+import './js//trailer';
 import './js/filter';
 
 import './js/spinner';

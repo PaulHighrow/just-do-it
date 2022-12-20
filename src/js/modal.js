@@ -1,7 +1,7 @@
 import FetchApi from './fetchAPI';
 // import { localStorageFunction } from './libraryStorage';
 import Spinner from './spinner';
-
+import { trailerBtnListener } from './trailer';
 const movie = new FetchApi();
 const spinner = new Spinner();
 
@@ -28,6 +28,7 @@ function onMovieCardClick(e) {
         modalMovie.innerHTML = renderMovieInfo(response);
         addModalMovieListeners();
         spinner.disable();
+        trailerBtnListener(selectedMovieId);
         return response;
       })
       .then(response => {
@@ -136,6 +137,9 @@ function renderMovieInfo({
         add to queue
       </button>
       </div>
+      <div class="trailerBtnWrap">
+  <button class="trailer-btn">WATCH TRAILER</button>
+</div>
       </div>
    </div>
   </div>`;
