@@ -5,6 +5,7 @@ import './js/fetchAPI';
 import './js/pagination';
 
 import './js/render-gallery';
+import './js/libraryStorage';
 import './js/modalTeam';
 import './js/searchInput';
 

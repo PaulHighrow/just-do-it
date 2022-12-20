@@ -1,4 +1,5 @@
 import FetchApi from './fetchAPI';
+import { localStorageFunction } from './libraryStorage';
 import Spinner from './spinner';
 
 const movie = new FetchApi();
@@ -28,6 +29,9 @@ function onMovieCardClick(e) {
         addModalMovieListeners();
         spinner.disable();
         return response;
+      })
+      .then(response => {
+        localStorageFunction(response);
       })
       .catch(error => console.log(error));
   }
@@ -125,10 +129,10 @@ function renderMovieInfo({
       <p class="modalMovie__description-text">${overview}</p>
 
       <div class="btn__modal-group">
-      <button class="btn-modal btn-modal-watched" type="button">
+      <button class="btn-modal btn-modal-watched" type="button" data-action="watch">
         add to Watched
       </button>
-      <button class="btn-modal btn-modal-queue" type="button">
+      <button class="btn-modal btn-modal-queue" type="button" data-action="queue">
         add to queue
       </button>
       </div>
