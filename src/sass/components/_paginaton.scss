@@ -26,7 +26,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
-  margin-bottom: 60px;;
+  margin-bottom: 60px;
   line-height: normal;
   text-align: center;
   font-size: 0;
@@ -70,9 +70,7 @@
 }
 
 .tui-pagination .tui-prev,
-.tui-pagination .tui-next 
-  
-{
+.tui-pagination .tui-next {
   width: 40px;
   height: 40px;
 
@@ -85,24 +83,27 @@
   line-height: 40px;
   white-space: nowrap;
   font-weight: normal;
-  
 }
 
 .tui-pagination .tui-first {
   display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('/src/images/pagination/go-start.svg') center;
 }
 .tui-pagination .tui-last {
   display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('/src/images/pagination/go-end.svg') center;
 }
 
 .tui-pagination .tui-prev-is-ellip {
   border-right: 0;
-  
 }
 
 .tui-pagination .tui-next-is-ellip {
   border-left: 0;
-  
 }
 
 .tui-pagination .tui-first + .tui-prev,
@@ -114,50 +115,44 @@
   margin-left: 0px;
 }
 
-.tui-pagination .tui-ico-first {
-  width: 11px;
-  height: 10px;
- 
-}
-
 .tui-pagination .tui-ico-prev {
   width: 16px;
   height: 16px;
-;
   background: url('/src/images/pagination/arrow-left.svg') center;
 
   display: inline-block;
   vertical-align: middle;
   font-size: 0px;
-
 }
 
 .tui-pagination .tui-ico-next {
   width: 16px;
   height: 16px;
- 
+
   background: url('/src/images/pagination/arrow-right.svg') center;
 
   display: inline-block;
   vertical-align: middle;
   font-size: 0px;
- 
 }
 
 .tui-pagination .tui-ico-ellip {
   width: 10px;
   height: 2px;
   margin-top: 0px;
-  
+
   color: black;
 
   display: inline-block;
   vertical-align: middle;
   font-size: 0px;
-   background: url('/src/images/pagination/three-points.svg') center;
+  background: url('/src/images/pagination/three-points.svg') center;
+}
+
+.tui-is-disabled {
+  opacity: 0.5;
 }
 .tui-pagination .tui-is-disabled:hover {
-
   cursor: default;
 }
 .tui-page-inputs {
@@ -185,7 +180,6 @@
   display: inline-block;
   font-size: 12px;
   height: 12px;
- ;
   vertical-align: top;
 }
 .tui-pagination .tui-page-btn:nth-child(9) {
@@ -231,5 +225,3 @@
     display: none;
   }
 }
-
-

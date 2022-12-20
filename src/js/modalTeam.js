@@ -4,9 +4,15 @@ const refs = {
   modalTeam: document.querySelector('.backdrop__team'),
 };
 
-refs.openModalBtn.addEventListener('click', toggleModal); // Відкриває модалку
-refs.closeModalBtn.addEventListener('click', toggleModal); // Закриває модалку
+refs.openModalBtn.addEventListener('click', toggleModal);
+refs.closeModalBtn.addEventListener('click', toggleModal);
 
 function toggleModal() {
   refs.modalTeam.classList.toggle('is-hidden');
 }
+
+window.addEventListener('click', function (evt) {
+  if (evt.target === document.querySelector('.backdrop__team')) {
+    toggleModal();
+  }
+});
