@@ -72,5 +72,5 @@ export async function renderGallery(page) {
     .join('');
 
   galleryEl.innerHTML = markup;
-  // spinner.disable();
+  spinner.disable();
 }
