@@ -2,13 +2,16 @@ import FetchApi from './fetchAPI';
 // import { localStorageFunction } from './libraryStorage';
 import Spinner from './spinner';
 import { trailerBtnListener } from './trailer';
+import { watchedBtnListener, queueBtnListener } from './localstorage';
+
+
 const movie = new FetchApi();
 const spinner = new Spinner();
 
 const galleryEl = document.querySelector('.gallery');
 const modalMovie = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
-const btnWatched = document.querySelector('button[data-action="watch"]');
+
 
 galleryEl.addEventListener('click', onMovieCardClick);
 
@@ -22,16 +25,23 @@ function onMovieCardClick(e) {
 
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
+
+
     spinner.enable();
 
     movie
       .getFilmDetails(selectedMovieId)
       .then(response => {
         modalMovieToggle();
+
+
         modalMovie.innerHTML = renderMovieInfo(response);
         addModalMovieListeners();
         spinner.disable();
         trailerBtnListener(selectedMovieId);
+        watchedBtnListener(selectedMovieId);
+        queueBtnListener(selectedMovieId);
+
         return response;
       })
       // .then(response => {
@@ -39,11 +49,6 @@ function onMovieCardClick(e) {
       // })
       .catch(error => console.error(error));
 
-      btnWatched.addEventListener('click', addToWatched);
-
-      function addToWatched() {
-        localStorage.setItem("CurrentFilm", JSON.stringify(selectedMovieId));
-}
   }
 }
 
