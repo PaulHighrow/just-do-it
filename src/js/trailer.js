@@ -3,13 +3,13 @@ import { API_KEY } from './fetchAPI';
 import { BASE_URL } from './fetchAPI';
 import FetchApi from './fetchAPI';
 const modalBackdrop = document.querySelector('.modal');
-console.log(modalBackdrop);
+// console.log(modalBackdrop);
 
 const getMoviesTrailer = async key => {
   const { data } = await axios.get(
     `${BASE_URL}movie/${key}/videos?api_key=${API_KEY}`
   );
-  console.log(data);
+  // console.log(data);
 
   return data.results.filter(item => {
     if (item.site === 'YouTube' && item.name.includes('Official Trailer')) {

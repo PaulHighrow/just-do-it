@@ -5,7 +5,8 @@
     padding: 60px 0px 60px 0px;
   }
 }
-.gallery {
+.gallery,
+.library {
   @include flexbox();
   gap: 20px;
   @media screen and (min-width: 768px) {

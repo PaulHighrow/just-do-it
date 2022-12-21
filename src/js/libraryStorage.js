@@ -6,7 +6,7 @@ const watchedButton = document.querySelector('.watched_button');
 export const libraryEl = document.querySelector('.library');
 let isWatchTabActive = true;
 
-console.log(libraryEl);
+// console.log(libraryEl);
 
 const addToStorage = (key, value) => {
   try {
@@ -163,8 +163,6 @@ function clearFilmList() {
 }
 
 function renderLibrary(storageContent) {
-  console.log(storageContent);
-  console.log(IMG_URL);
   const markup = storageContent
     .map(({ id, poster_path, title, genres, release_date }) => {
       return `<li class="gallery__item" data-id="${id}">

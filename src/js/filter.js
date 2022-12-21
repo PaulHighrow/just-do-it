@@ -12,8 +12,8 @@ const refs = {
   gallery: document.querySelector('.gallery'),
 };
 
-console.log(refs.genresList);
-console.log(refs.filterNavBtn);
+// console.log(refs.genresList);
+// console.log(refs.filterNavBtn);
 
 const showGenreFilter = () => refs.genresList.classList.toggle('genres--shown');
 

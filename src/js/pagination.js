@@ -42,7 +42,7 @@ export function addPaginationGallery() {
 
   getTrendingMovies().then(data => {
     let total = data.total_results;
-    console.log(total);
+    // console.log(total);
     pagination.reset(total);
   });
 

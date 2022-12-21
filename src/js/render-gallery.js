@@ -6,13 +6,15 @@ const spinner = new Spinner();
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 export const galleryEl = document.querySelector('.gallery');
 
+let trendFilmsList = [];
+let page = 1;
+
 if (galleryEl) {
-  let trendFilmsList = [];
-  let page = 1;
   spinner.enable();
   renderGallery(page);
   addPaginationGallery();
 }
+
 export async function renderGallery(page) {
   await getTrendingMovies(page).then(data => {
     trendFilmsList = [];
