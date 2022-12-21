@@ -1,11 +1,14 @@
 import { addPaginationGallery } from './pagination.js';
 import { getGenres, getTrendingMovies } from './themoviedb.js';
+import Spinner from './spinner';
 
+const spinner = new Spinner();
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 export const galleryEl = document.querySelector('.gallery');
 
 let trendFilmsList = [];
 let page = 1;
+spinner.enable();
 renderGallery(page);
 addPaginationGallery();
 
@@ -69,4 +72,5 @@ export async function renderGallery(page) {
     .join('');
 
   galleryEl.innerHTML = markup;
+  // spinner.disable();
 }
