@@ -29,7 +29,7 @@ export const movieTrailer = async keyId => {
 //приймає ключ (id)
 export async function trailerMarkup(event) {
   const movieId = Number(event.target.getAttribute('key'));
-  console.log(movieId);
+  // console.log(movieId);
   const trailerBtn = document.querySelector('.trailer-btn');
   trailerBtn.setAttribute('disabled', true);
   await movieTrailer(movieId).then(r => {

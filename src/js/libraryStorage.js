@@ -7,6 +7,13 @@ export const libraryEl = document.querySelector('.library');
 let isWatchTabActive = true;
 
 // console.log(libraryEl);
+if (libraryEl) {
+  watchedButton.addEventListener('click', handleClickWatched);
+  queueButton.addEventListener('click', handleClickQueue);
+}
+
+// isLocalStorageEmpty('watch');
+// isLocalStorageEmpty('queue');
 
 const addToStorage = (key, value) => {
   try {
@@ -47,18 +54,14 @@ export function localStorageFunction(movieData) {
   watchBtn.addEventListener('click', addWatch);
   queueBtn.addEventListener('click', addQueue);
 
-  if (
-    localStorage.getItem('watch').includes(filmObject) &&
-    localStorage.getItem('watch').length > 2
-  ) {
+  // console.log(localStorage.getItem('watch').includes(filmObject));
+
+  if (localStorage.getItem('watch').includes(filmObject)) {
     watchBtn.classList.add('button--accent-btn');
     watchBtn.textContent = 'REMOVE FROM WATCHED';
   }
 
-  if (
-    localStorage.getItem('queue').includes(filmObject) &&
-    localStorage.getItem('queue').length > 2
-  ) {
+  if (localStorage.getItem('queue').includes(filmObject)) {
     queueBtn.classList.add('button--accent-btn');
     queueBtn.textContent = 'REMOVE FROM QUEUE';
   }
@@ -107,9 +110,11 @@ export function localStorageFunction(movieData) {
 
 function isLocalStorageEmpty(name) {
   if (getFromStorage(name).length === 0) {
-    if (noFilmsMessage) {
+    // renderSavedFilms(name);
+    if (libraryEl) {
       noFilmsMessage.classList.remove('visually-hidden');
     }
+
     return;
   }
 }
@@ -118,15 +123,15 @@ renderSavedFilms('watch');
 // addPaginationGallery();
 export function handleClickQueue() {
   renderSavedFilms('queue');
-  removeDisabled(watchedButton);
-  setDisabled(queueButton);
+  // removeDisabled(watchedButton);
+  // setDisabled(queueButton);
   isWatchTabActive = false;
 }
 
 export function handleClickWatched() {
   renderSavedFilms('watch');
-  setDisabled(watchedButton);
-  removeDisabled(queueButton);
+  // setDisabled(watchedButton);
+  // removeDisabled(queueButton);
   isWatchTabActive = true;
 }
 
@@ -145,15 +150,17 @@ export function renderSavedFilms(name) {
   }
 }
 
-function setDisabled(el) {
-  el.setAttribute('disabled', '');
-  el.classList.add('button-active');
-}
+// function setDisabled(el) {
+//   console.log(el);
+//   el.setAttribute('disabled', '');
+//   el.classList.add('button-active');
+// }
 
-function removeDisabled(el) {
-  el.removeAttribute('disabled');
-  el.classList.remove('button-active');
-}
+// function removeDisabled(el) {
+//   console.log(el);
+//   el.removeAttribute('disabled');
+//   el.classList.remove('button-active');
+// }
 
 function clearFilmList() {
   if (libraryEl) {

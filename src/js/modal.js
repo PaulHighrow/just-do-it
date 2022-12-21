@@ -1,11 +1,5 @@
 import FetchApi from './fetchAPI';
-import {
-  localStorageFunction,
-  libraryEl,
-  handleClickQueue,
-  handleClickWatched,
-  noFilmsMessage,
-} from './libraryStorage';
+import { localStorageFunction, libraryEl } from './libraryStorage';
 import Spinner from './spinner';
 import { trailerBtnListener } from './trailer';
 const movie = new FetchApi();
@@ -32,24 +26,22 @@ function onMovieCardClick(e) {
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
-    console.log(movie);
+    // console.log(movie);
     movie
       .getFilmDetails(selectedMovieId)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         modalMovieToggle();
         modalMovie.innerHTML = renderMovieInfo(response);
         addModalMovieListeners();
-        spinner.disable();
+        // const watchBtn = document.querySelector('[data-action="watch"]');
+        // const queueBtn = document.querySelector('[data-action="queue"]');
+
         trailerBtnListener(selectedMovieId);
-        const watchedButton = document.querySelector('.btn-modal-watched');
-        const queueButton = document.querySelector('.btn-modal-queue');
-        watchedButton.addEventListener('click', handleClickWatched);
-        queueButton.addEventListener('click', handleClickQueue);
+        spinner.disable();
         return response;
       })
       .then(response => {
-        console.log(response);
         localStorageFunction(response);
       })
       .catch(error => console.error(error));
@@ -64,6 +56,7 @@ function onCloseModalMovie(e) {
     e.target.parentNode.classList.contains('close-btn__icon');
 
   if (e.code === 'Escape' || isContainsClass || e.target === backdrop) {
+    // localStorageFunction();
     modalMovieToggle();
     clearModalMovieInfo();
     removeModalMovieListeners();
