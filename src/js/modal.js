@@ -8,8 +8,11 @@ const spinner = new Spinner();
 const galleryEl = document.querySelector('.gallery');
 const modalMovie = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
+const btnWatched = document.querySelector('button[data-action="watch"]');
 
 galleryEl.addEventListener('click', onMovieCardClick);
+
+
 
 function onMovieCardClick(e) {
   e.preventDefault();
@@ -31,10 +34,16 @@ function onMovieCardClick(e) {
         trailerBtnListener(selectedMovieId);
         return response;
       })
-      .then(response => {
-        localStorageFunction(response);
-      })
+      // .then(response => {
+      //   localStorageFunction(response);
+      // })
       .catch(error => console.error(error));
+
+      btnWatched.addEventListener('click', addToWatched);
+
+      function addToWatched() {
+        localStorage.setItem("CurrentFilm", JSON.stringify(selectedMovieId));
+}
   }
 }
 
@@ -105,9 +114,7 @@ function renderMovieInfo({
           <p class="modalMovie__data-title">Vote / Votes</p>
           <p class="modalMovie__data-value">
 
-            <span class="modalMovie__vote-value">${vote_average.toFixed(
-              1
-            )}</span> /
+            <span class="modalMovie__vote-value">${vote_average.toFixed(1)}</span> /
 
             <span class="modalMovie__votes-value">${vote_count}</span>
           </p>
@@ -148,3 +155,4 @@ function renderMovieInfo({
 function clearModalMovieInfo() {
   modalMovie.innerHTML = '';
 }
+
