@@ -14,4 +14,3 @@ import './js/filter';
 
 import './js/spinner';
 import './js/btn-up';
-// import './js/changeTheme';

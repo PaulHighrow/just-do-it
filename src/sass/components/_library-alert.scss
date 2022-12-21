@@ -1,0 +1,30 @@
+.alert__message {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    width: 300px;
+    @media screen and (min-width: 768px) {
+        width: 500;
+    }
+    margin: 0 auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.sorry {
+    color: var(--secondary-color);
+    @include font(64, 700, 144);
+    margin-bottom: 30px;
+    @media screen and (min-width: 768px) {
+        font-size: 72px;
+    }
+}
+
+.string__alert {
+    @include font(20, 700, 48);
+    @media screen and (min-width: 768px) {
+        font-size: 24px;
+    }
+}

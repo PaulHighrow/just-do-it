@@ -19,9 +19,13 @@
 @import './components/spinner';
 @import './components/up-btn';
 @import './components/darkmode';
-@import './components/trailer'; // Layout styles
+@import './components/trailer';
+@import './components/library-alert'; 
+
+// Layout styles
 @import './layout/header';
 @import './layout/gallery';
 @import './layout/footer';
 @import './layout/header-library';
 @import './layout/filter';
+
