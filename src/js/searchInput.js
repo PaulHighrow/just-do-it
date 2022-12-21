@@ -10,7 +10,6 @@ const NO_IMAGE = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 const form = document.querySelector('.search__form');
 const galleryEl = document.querySelector('.gallery');
-const guard = document.querySelector('.js-guard');
 const message = document.querySelector('.header__message');
 
 form.addEventListener('submit', onSearch);

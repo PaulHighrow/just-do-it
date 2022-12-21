@@ -1,13 +1,12 @@
-import { renderGallery } from './render-gallery';
-import { galleryEl } from './render-gallery';
+const IMG_URL = 'https://image.tmdb.org/t/p/w500/';
 
 const noFilmsMessage = document.querySelector('.alert__message');
 const queueButton = document.querySelector('.queue_button');
 const watchedButton = document.querySelector('.watched_button');
-const isWatchTabActive = true;
+export const libraryEl = document.querySelector('.library');
+let isWatchTabActive = true;
 
-console.log(watchedButton);
-console.log(galleryEl);
+console.log(libraryEl);
 
 const addToStorage = (key, value) => {
   try {
@@ -37,7 +36,7 @@ const removeFromStorage = key => {
   }
 };
 
-function localStorageFunction(movieData) {
+export function localStorageFunction(movieData) {
   const filmObject = JSON.stringify(movieData);
   const isLibraryPage = location.pathname.includes('library');
   const cartItem = document.querySelector(`[data-id="${movieData.id}"]`);
@@ -115,33 +114,34 @@ function isLocalStorageEmpty(name) {
   }
 }
 
-watchedButton.addEventListener('click', handleClickWatched);
-queueButton.addEventListener('click', handleClickQueue);
-
 renderSavedFilms('watch');
-addPaginationGallery();
-function handleClickQueue() {
+// addPaginationGallery();
+export function handleClickQueue() {
   renderSavedFilms('queue');
   removeDisabled(watchedButton);
   setDisabled(queueButton);
   isWatchTabActive = false;
 }
 
-function handleClickWatched() {
+export function handleClickWatched() {
   renderSavedFilms('watch');
   setDisabled(watchedButton);
   removeDisabled(queueButton);
   isWatchTabActive = true;
 }
 
-function renderSavedFilms(name) {
+export function renderSavedFilms(name) {
   clearFilmList();
-  const addedFilms = getFromStorage(name);
-  if (addedFilms && addedFilms.length > 0) {
-    renderGallery(addedFilms);
-    noFilmsMessage.classList.add('visually-hidden');
+  const storageMovies = getFromStorage(name);
+  if (storageMovies) {
+    renderLibrary(storageMovies);
+    if (noFilmsMessage) {
+      noFilmsMessage.classList.add('visually-hidden');
+    }
   } else {
-    noFilmsMessage.classList.remove('visually-hidden');
+    if (noFilmsMessage) {
+      noFilmsMessage.classList.remove('visually-hidden');
+    }
   }
 }
 
@@ -156,7 +156,30 @@ function removeDisabled(el) {
 }
 
 function clearFilmList() {
-  galleryEl.innerHTML = '';
+  if (libraryEl) {
+    libraryEl.innerHTML = '';
+  }
+  // noFilmsMessage.classList.remove('visually-hidden');
 }
 
-export { localStorageFunction };
+function renderLibrary(storageContent) {
+  console.log(storageContent);
+  console.log(IMG_URL);
+  const markup = storageContent
+    .map(({ id, poster_path, title, genres, release_date }) => {
+      return `<li class="gallery__item" data-id="${id}">
+    <a href="#" class="gallery__link" data-id="${id}"><div class="gallery__thumb">
+    <img class="gallery__img" id="${id}" src="${IMG_URL + poster_path}
+    "alt="${title}" /></div><div class="gallery__descr">
+    <h2 class="gallery__title">${title}</h2>
+    <p class="gallery__text">${genres
+      .map(({ name }) => name)
+      .join(', ')} | ${release_date.slice(0, 4)}</p>
+    </div></a></li>`;
+    })
+    .join('');
+
+  if (libraryEl) {
+    libraryEl.innerHTML = markup;
+  }
+}

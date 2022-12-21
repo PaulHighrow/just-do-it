@@ -215,7 +215,6 @@
 
 .btn-modal {
   width: 110px;
-  height: 44px;
   border-radius: 5px;
   font-weight: 500;
   font-size: 12px;
@@ -224,12 +223,10 @@
 
   @media screen and (min-width: 768px) {
     width: 125px;
-    height: 44px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 136px;
-    height: 44px;
   }
 }
 

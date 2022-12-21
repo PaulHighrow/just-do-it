@@ -1,5 +1,11 @@
 import FetchApi from './fetchAPI';
-// import { localStorageFunction } from './libraryStorage';
+import {
+  localStorageFunction,
+  libraryEl,
+  handleClickQueue,
+  handleClickWatched,
+  noFilmsMessage,
+} from './libraryStorage';
 import Spinner from './spinner';
 import { trailerBtnListener } from './trailer';
 const movie = new FetchApi();
@@ -9,7 +15,13 @@ const galleryEl = document.querySelector('.gallery');
 const modalMovie = document.querySelector('.modal');
 const backdrop = document.querySelector('.backdrop');
 
-galleryEl.addEventListener('click', onMovieCardClick);
+if (galleryEl) {
+  galleryEl.addEventListener('click', onMovieCardClick);
+}
+
+if (libraryEl) {
+  libraryEl.addEventListener('click', onMovieCardClick);
+}
 
 function onMovieCardClick(e) {
   e.preventDefault();
@@ -20,18 +32,24 @@ function onMovieCardClick(e) {
     const selectedMovieId = Number(selectedMovie.getAttribute('data-id'));
 
     spinner.enable();
-
+    console.log(movie);
     movie
       .getFilmDetails(selectedMovieId)
       .then(response => {
+        console.log(response);
         modalMovieToggle();
         modalMovie.innerHTML = renderMovieInfo(response);
         addModalMovieListeners();
         spinner.disable();
         trailerBtnListener(selectedMovieId);
+        const watchedButton = document.querySelector('.btn-modal-watched');
+        const queueButton = document.querySelector('.btn-modal-queue');
+        watchedButton.addEventListener('click', handleClickWatched);
+        queueButton.addEventListener('click', handleClickQueue);
         return response;
       })
       .then(response => {
+        console.log(response);
         localStorageFunction(response);
       })
       .catch(error => console.error(error));
