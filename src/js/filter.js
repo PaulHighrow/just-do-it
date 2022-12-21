@@ -33,7 +33,7 @@ async function sortByGenre(elem) {
   }
 
   genre = Number(elem.target.id);
-  console.log(Number(elem.target.id));
+  // console.log(Number(elem.target.id));
   await fetchGenres(page, genre).then(data => {
     trendFilmsList = [];
     data.results.forEach(movie => {

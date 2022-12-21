@@ -109,7 +109,7 @@ export function localStorageFunction(movieData) {
 }
 
 function isLocalStorageEmpty(name) {
-  if (getFromStorage(name).length === 0) {
+  if (!getFromStorage(name)) {
     // renderSavedFilms(name);
     if (libraryEl) {
       noFilmsMessage.classList.remove('visually-hidden');

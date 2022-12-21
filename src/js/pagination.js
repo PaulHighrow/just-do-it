@@ -52,7 +52,7 @@ export function addPaginationGallery() {
     const currentPage = event.page;
     getTrendingMovies().then(data => {
       data.page = currentPage;
-      console.log(currentPage);
+      // console.log(currentPage);
     });
     // renderSavedFilm().then(data=>
     //   data.page = currentPage)
@@ -62,7 +62,7 @@ export function addPaginationGallery() {
   });
 }
 
-function backToTop() {
+export function backToTop() {
   if (window.pageYOffset > 0) {
     window.scrollBy(0, -30);
     setTimeout(backToTop, 0);

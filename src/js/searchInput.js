@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-
+import { backToTop } from './pagination';
 import { apiService } from './themoviedb';
 import { getGenres } from './themoviedb.js';
 import { renderGallery } from './render-gallery.js';
@@ -27,12 +27,14 @@ async function onSearch(evn) {
   ApiService.searchQuery = form.elements.searchQuery.value.trim();
 
   if (!ApiService.searchQuery) {
+    // console.log();
     createMessageInput();
+    onClear();
     return;
   }
 
   const request = await ApiService.getRequest(page).then(data => {
-    console.log(data);
+    // console.log(data);
     renderGalleryinput(page);
     if (!data.total_pages) {
       createMessageInput();
@@ -109,6 +111,7 @@ function renderGalleryinput(page) {
     );
 
     galleryEl.innerHTML = markup;
+    backToTop();
   });
 }
 
